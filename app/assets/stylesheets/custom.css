@@ -143,6 +143,9 @@ body{
     height: 247px;
   }
   .sm-para{font-size: 14px;}
+  .search-icon{
+    margin: 2px 7px 0px 0px;
+  }
 
 }
 @media screen and (min-width: 768px) and (max-width: 991px)
@@ -172,6 +175,9 @@ body{
   }
   .media .post-img{
     width: 110px
+  }
+  .search-icon{
+    margin: 2px 28px 0px 0px;
   }
 }
 @media screen and (min-width: 992px) and (max-width: 1199px){
