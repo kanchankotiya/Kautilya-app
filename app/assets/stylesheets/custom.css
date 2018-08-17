@@ -141,6 +141,50 @@ body{
   margin-top: 35%;
 }
 .show-img img{width: 100%;}
+.post-footer-icon {
+  width: 22px;
+  font-size: 18px;
+  color: #b9bec3;
+  float: right;
+  display: inline-block;
+}
+.post-footer-title {
+  line-height: 19px;
+  text-transform: capitalize;
+  color: #444444;
+  text-align: left;
+  border-bottom: 2px solid #0277bd;
+  display: inline-block;
+  bottom: -2px;
+  position: relative;
+}
+.show-card-image{
+  width: 212px;
+  height: 162px;
+}
+.verticle-line{
+  width: 1px;
+  height: 300px;
+}
+ul.post-pager {
+  display: block;
+  width: 100%;
+  max-height: 95px;
+  overflow: hidden;
+  background: #fff;
+}
+.post-pager li {
+  padding: 0;
+  display: table-cell;
+  width: 45%;
+  float: right;
+  overflow: hidden;
+}
+.post-pager-title span{font-size: 12.5px;}
+.previous,{
+  margin-right: 10%;
+    margin-top: 2%;
+  }
 
 @media screen and (max-width: 575px)
 {

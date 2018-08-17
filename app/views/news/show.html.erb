@@ -122,7 +122,6 @@
       </div>
     </div>
   </nav>
-
   <main role="main" class="container">
     <div class="row">
       <div class="col-lg-8 col-md-12 blog-main">
@@ -138,11 +137,52 @@
               <%= image_tag @news.image %>
             </div>
             <div class="show-description-text mt-4">
-              <%= @news.description%>
+              <%= @news.description.html_safe%>
             </div>
-            <div class="find-text mt-3 text-center">
+            <div class="find-text mt-5 text-center">
               <p>Find More News Related to <font class="font-weight-bold"><%= @news.category.name%></font></p>
             </div>
+          </div>  
+        </div>
+        <div class="card mt-4">
+          <div class="card-body">
+            <div class="heading border-bottom pb-0">
+              <span class="post-footer-icon text-right">
+              <i aria-hidden="true" class="fa fa-rss"></i>
+              </span>
+              <span class="post-footer-title pb-2 font-weight-bold text-uppercase">
+                You Might Also Like
+              </span>
+            </div>
+            <div class="card-deck mt-4">
+              <% @categories.shuffle.first(3).each do |category| %> 
+              <% category.news.each do |news|%>    
+                <div class="card border-0">
+                  <%= image_tag news.image, class: "show-card-image"%>
+                  <div class="card-body p-0">
+                    <div class="favourite-posts-overlay mt-2"><a class="favourite-category" href="/"><%= category.name%></a></div>
+                    <p class="card-text font-weight-bold"><%= truncate(news.title, length: 50) %></p>
+                  </div>
+                </div>
+              <%end%>
+              <%end%>  
+            </div>
+          </div>  
+        </div>
+        <div class="card mt-4">
+          <div class="card-body p-0">
+            <ul class="post-pager">
+              <li class="next mt-3">
+                <a class="older-link" href="" id="Blog1_blog-pager-older-link" rel="previous"><strong><%= link_to("Next Post", @news.next) if @news.next %><i class="fa fa-angle-right ml-2"></i></strong><br><div class="post-pager-title"><span>
+                 <%= @news.next.try(:title) %>
+                </span></div></a>
+              </li>
+              <li class="previous">
+                <a class="newer-link" href="" id="Blog1_blog-pager-newer-link" rel="next"> <strong> <i class="fa fa-angle-left mr-2"></i><%= link_to("Previous Post", @news.previous) if @news.previous %></strong><br><div class="post-pager-title"><span>
+                  <%= @news.previous.try(:title)%>
+                </span></div></a>
+                </li>
+            </ul> 
           </div>  
         </div>
       </div><!-- /.blog-main -->
