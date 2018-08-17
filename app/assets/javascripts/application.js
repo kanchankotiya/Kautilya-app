@@ -15,5 +15,6 @@
 //= require bootstrap-sprockets
 //= require owl.carousel
 //= require owl.carousel.min
+//= require ckeditor/init
 //= require turbolinks
 //= require_tree .

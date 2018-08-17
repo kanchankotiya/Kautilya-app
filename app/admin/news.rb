@@ -28,7 +28,7 @@ permit_params :image, :description, :title, :date, :category_id
   form title: 'A custom title' do |f|
     inputs 'News' do
       input :title
-      input :description
+      input :description, as: :ckeditor
       input :date
       input :image, as: :file
       input :category, :label => 'Category', :as => :select
