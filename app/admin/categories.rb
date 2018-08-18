@@ -10,6 +10,15 @@ ActiveAdmin.register Category do
 #   permitted = [:permitted, :attributes]
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
-# end
-
+# en
+  index download_links: [:csv] do
+    selectable_column
+    column :id
+    column :name
+    actions
+  end
+    config.clear_action_items!
+    action_item :only => :index do
+      link_to "Add Category" , "/admin/category/new" 
+    end
 end
