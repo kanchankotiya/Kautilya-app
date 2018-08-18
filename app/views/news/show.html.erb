@@ -1,60 +1,8 @@
 <div class="container main-container pl-0 pr-0 mb-4">
-  <nav class="navbar  navbar-expand-lg    mt-md-0 mt-md-3 border-bottom">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="fa fa-bars text-dark"></span>
-    </button>
-    <div class="d-sm-none">
-      <div class="d-flex flex-row ml-auto ">
-        <div class="p-2"><i class="fa fa-facebook"></i></div>
-        <div class="p-2"><i class="fa fa-twitter"></i></div>
-        <div class="p-2"><i class="fa fa-instagram"></i></div>
-        <div class="p-2"><i class="fa fa-youtube"></i></div>
-      </div>
-    </div>  
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link pl-md-3" href="#">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link pl-md-3" href="#">National</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link pl-md-3" href="#">International</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link pl-md-3" href="#">Sports</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link pl-md-3" href="#">Science and tech</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Polity</a>
-        </li>
-        <li class="nav-item">
-          <a   class="nav-link pl-md-3" href="#">
-          अंग्रेजी में पढ़ें!
-          </a>
-        </li>
-      </ul>
-    </div>
-    <div class="d-sm-block d-none ml-auto">
-      <div class="d-flex flex-row ">
-        <div class="p-2"><i class="fa fa-facebook"></i></div>
-        <div class="p-2"><i class="fa fa-twitter"></i></div>
-        <div class="p-2"><i class="fa fa-instagram"></i></div>
-        <div class="p-2"><i class="fa fa-youtube"></i></div>
-      </div>
-    </div>  
-  </nav>
   <header class="blog-header mt-lg-0 mt-md-3">
     <div class="row flex-lg-nowrap d-md-flex flex-md-wrap justify-content-lg-between justify-content-md-center align-items-center no-gutters">
-      <div class="col-lg-4 col-12 pt-1  mt-4 mb-4 text-lg-left text-md-center">
-        <a class="navbar-logo" href="#"><h1 class="font-weight-bold d-md-block d-none ml-lg-4">Kautilya Academy</h1>
-        <h3 class="font-weight-bold d-sm-none d-block text-center">Kautilya Academy</h3></a>
+      <div class="col-lg-4 col-12 pt-1  mt-2 mb-4 text-lg-left text-md-center text-center">
+        <a class="navbar-logo ml-lg-5" href="/"><%= image_tag "logo.png" %></a>
       </div>
       <div class="offset-lg-3 col-lg-4 text-md-center d-none d-lg-block d-md-block text-lg-right mr-3">
         <a class="text-muted demo-icon" href="#">
@@ -90,7 +38,7 @@
     <div class="collapse navbar-collapse flex-md-column  sticky-md-top" id="navbarSupportedContent1">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item nav-item active">
-         <a class=" font-weight-bold text-white" href="#">Home</a>
+         <a class=" font-weight-bold" href="/">Home</a>
         </li>
         <li class="nav-item2">
           <a class= "font-weight-bold" href="#">National</a>
@@ -131,7 +79,7 @@
               <%= @news.title %>
             </h3> 
             <small class="text-muted media-para ">
-              <abbr class="published" itemprop="datePublished" title="2018-08-11T10:46:00+05:30"><i><%= @news.date.strftime("%b %m %Y") %></i> 
+              <abbr class="published" itemprop="datePublished" title="2018-08-11T10:46:00+05:30"><i><%= @news.created_at.strftime("%d %b %Y") %></i> 
             </small>
             <div class="show-img text-center mt-4">
               <%= image_tag @news.image %>
@@ -155,7 +103,7 @@
               </span>
             </div>
             <div class="card-deck mt-4">
-              <% @categories.shuffle.first(3).each do |category| %> 
+              <% @categories.last(2).each do |category| %> 
               <% category.news.each do |news|%>    
                 <div class="card border-0">
                   <%= image_tag news.image, class: "show-card-image"%>

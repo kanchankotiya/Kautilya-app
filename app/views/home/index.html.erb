@@ -1,60 +1,8 @@
 <div class="container main-container pl-0 pr-0 mb-4">
-  <nav class="navbar  navbar-expand-lg    mt-md-0 mt-md-3 border-bottom">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="fa fa-bars text-dark"></span>
-    </button>
-    <div class="d-sm-none">
-      <div class="d-flex flex-row ml-auto ">
-        <div class="p-2"><i class="fa fa-facebook"></i></div>
-        <div class="p-2"><i class="fa fa-twitter"></i></div>
-        <div class="p-2"><i class="fa fa-instagram"></i></div>
-        <div class="p-2"><i class="fa fa-youtube"></i></div>
-      </div>
-    </div>  
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link pl-md-3" href="#">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link pl-md-3" href="#">National</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link pl-md-3" href="#">International</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link pl-md-3" href="#">Sports</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link pl-md-3" href="#">Science and tech</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Polity</a>
-        </li>
-        <li class="nav-item">
-          <a   class="nav-link pl-md-3" href="#">
-          अंग्रेजी में पढ़ें!
-          </a>
-        </li>
-      </ul>
-    </div>
-    <div class="d-sm-block d-none ml-auto">
-      <div class="d-flex flex-row ">
-        <div class="p-2"><i class="fa fa-facebook"></i></div>
-        <div class="p-2"><i class="fa fa-twitter"></i></div>
-        <div class="p-2"><i class="fa fa-instagram"></i></div>
-        <div class="p-2"><i class="fa fa-youtube"></i></div>
-      </div>
-    </div>  
-  </nav>
   <header class="blog-header mt-lg-0 mt-md-3">
     <div class="row flex-lg-nowrap d-md-flex flex-md-wrap justify-content-lg-between justify-content-md-center align-items-center no-gutters">
-      <div class="col-lg-4 col-12 pt-1  mt-4 mb-4 text-lg-left text-md-center">
-        <a class="navbar-logo" href="#"><h1 class="font-weight-bold d-md-block d-none ml-lg-4">Kautilya Academy</h1>
-        <h3 class="font-weight-bold d-sm-none d-block text-center">Kautilya Academy</h3></a>
+      <div class="col-lg-4 col-12 pt-1  mt-2 mb-4 text-lg-left text-md-center text-center">
+        <a class="navbar-logo ml-lg-5" href="/"><%= image_tag "logo.png" %></a>
       </div>
       <div class="offset-lg-3 col-lg-4 text-md-center d-none d-lg-block d-md-block text-lg-right mr-3">
         <a class="text-muted demo-icon" href="#">
@@ -90,7 +38,7 @@
     <div class="collapse navbar-collapse flex-md-column  sticky-md-top" id="navbarSupportedContent1">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item nav-item active">
-         <a class=" font-weight-bold text-white" href="#">Home</a>
+         <a class=" font-weight-bold" href="/">Home</a>
         </li>
         <li class="nav-item2">
           <a class= "font-weight-bold" href="#">National</a>
@@ -128,7 +76,7 @@
       <% category.news.each do |news|%>    
         <div class="item">
           <div class="card border-0">
-            <%= image_tag news.image %>
+            <%= image_tag news.image if news.image.present?%>
             <div class="card-img-overlay text-center card-overlay-text">
              <div class="favourite-posts-overlay"><a class="favourite-category" href="/"><%= category.name%></a><h1><%= link_to news_path(news), class: "favourite-posts-title" do %><p><%= news.title%></p><%end%></h1></div>
             </div>
@@ -158,14 +106,11 @@
         <% @categories.shuffle.last(10).each do |category| %> 
         <% category.news.each do |news|%>   
           <div class="media">
-            <%= image_tag news.image %>
+            <%= image_tag news.image%>
             <div class="media-body ml-md-3">
               <div class="row">
-                <div class="col-1">
-                  <%= image_tag "downloads.jpg", class: "news-small-img" %>
-                </div>  
                 <div class="col text-muted">
-                  <%= link_to news_path(news), class: "media-para"  do %><small><i class="fa fa-calendar"></i><abbr class="published ml-2" itemprop="datePublished" title="2018-08-11T10:46:00+05:30"><i><%= news.date.strftime("%b %m %Y") %></i> <i class="fa fa-hashtag ml-3 mr-1"></i><%= category.name%></abbr></small>
+                  <%= link_to news_path(news), class: "media-para"  do %><small><i class="fa fa-calendar"></i><abbr class="published ml-2" itemprop="datePublished"><i><%= news.created_at.strftime("%b %d %Y") %></i> <i class="fa fa-hashtag ml-3 mr-1"></i><%= category.name%></abbr></small>
                   <% end %>
                 </div>  
               </div>  
@@ -335,9 +280,25 @@
       <p>
         All Rights Reserved by 
         <a href="#">
-          Kautilya Academy 2018 
+          Pariksharthi <%= Time.current.year %>
         </a>
       </p>
+    </div>
+    <div class="d-sm-none">
+      <div class="text-center">
+        <div class="p-2"><a href="https://www.facebook.com/pariksharthi.in/" class="text-dark"><i class="fa fa-facebook"></i></a></div>
+        <div class="p-2"><a href="https://www.twitter.com/pariksharthi" class="text-dark"><i class="fa fa-twitter"></i></a></div>
+        <!-- <div class="p-2"><i class="fa fa-instagram"></i></div>
+        <div class="p-2"><i class="fa fa-youtube"></i></div> -->
+      </div>
+    </div>  
+    <div class="d-sm-block d-none ">
+      <div class="d-flex flex-row justify-content-center">
+        <div class="p-2"><a href="https://www.facebook.com/pariksharthi.in/" class="text-dark"><i class="fa fa-facebook"></i></a></div>
+        <div class="p-2"><a href="https://www.twitter.com/pariksharthi" class="text-dark"><i class="fa fa-twitter"></i></a></div>
+        <!-- <div class="p-2"><i class="fa fa-instagram"></i></div>
+        <div class="p-2"><i class="fa fa-youtube"></i></div> -->
+      </div>
     </div>
   </div>
 </div>
