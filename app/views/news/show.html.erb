@@ -103,8 +103,8 @@
               </span>
             </div>
             <div class="card-deck mt-4">
-              <% @categories.last(2).each do |category| %> 
-              <% category.news.each do |news|%>    
+              <% @categories.shuffle.last(2).each do |category| %> 
+              <% category.news.shuffle.last(2).each do |news|%>    
                 <div class="card border-0">
                   <%= image_tag news.image, class: "show-card-image"%>
                   <div class="card-body p-0">
