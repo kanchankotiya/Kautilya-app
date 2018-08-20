@@ -41,10 +41,14 @@
          <a class=" font-weight-bold" href="/">Home</a>
         </li>
         <li class="nav-item2">
-          <a class= "font-weight-bold" href="#">National</a>
+          <%= link_to category_path(@category) do %>
+            National
+          <% end %> 
         </li>
         <li class="nav-item2">
-          <a class="font-weight-bold" href="#">International</a>
+          <%= link_to category_path(@category) do %>
+            International
+          <% end %> 
         </li>
         <li class="nav-item2">
           <a class="font-weight-bold" href="#">Sports</a>
@@ -70,89 +74,56 @@
       </div>
     </div>
   </nav>
-  <main role="main" class="container">
+  <div class="show-container">
+    <div class="centered text-white d-sm-block d-none"><h4>Showing Posts With Label <%= @category.name%>. <a href="/"><u>Show  All Posts</u></a></h4></div>
+    <div class="centered text-white d-sm-none d-block"><h5>Showing Posts With Label <%= @category.name%>. <a href="/"><u>Show  All Posts</u></a></h5></div>
+  </div>
+  <main role="main" class="container mt-4">
     <div class="row">
-      <div class="col-lg-8 col-md-12 blog-main">
-        <div class="card mt-5">
-          <div class="card-body">
-            <h3 class="post-title">
-              <%= @news.title %>
-            </h3> 
-            <small class="text-muted media-para ">
-              <abbr class="published" itemprop="datePublished" title="2018-08-11T10:46:00+05:30"><i><%= @news.created_at.strftime("%d %b %Y") %></i> 
-            </small>
-            <div class="show-img text-center mt-4">
-              <% if @news.image.present? %>
-                <%= image_tag @news.image %>
-              <% else %>
-                <%= image_tag "dummy.jpg" %>  
-              <% end %>
-            </div>
-            <div class="show-description-text mt-4">
-              <%= @news.description.html_safe%>
-            </div>
-            <div class="find-text mt-5 text-center">
-              <p>Find More News Related to <font class="font-weight-bold"><%= @news.category.name%></font></p>
-            </div>
-          </div>  
-        </div>
-        <div class="card mt-4">
-          <div class="card-body">
-            <div class="heading border-bottom pb-0">
-              <span class="post-footer-icon text-right">
-              <i aria-hidden="true" class="fa fa-rss"></i>
-              </span>
-              <span class="post-footer-title pb-2 font-weight-bold text-uppercase">
-                You Might Also Like
-              </span>
-            </div>
-            <div class="card-deck mt-4">
-              <% @categories.last(2).each do |category| %> 
-              <% category.news.last(2).each do |news|%>    
-                <div class="card border-0">
-                  <% if news.image.present? %>
-                    <%= image_tag news.image, class: "show-card-image"%>
-                  <% else %>
-                    <%= image_tag "dummy.jpg", class: "show-card-image" %>  
+      <div class="col-lg-8 col-md-12 blog-main pl-lg-0">
+        <% @category.news.each do |news|%>   
+          <div class="media">
+             <% if news.image.present? %>
+              <%= image_tag news.image %>
+            <% else %>
+              <%= image_tag "dummy.jpg" %>  
+            <% end %>
+            <div class="media-body ml-md-3">
+              <div class="row">
+                <div class="col text-muted">
+                  <%= link_to news_path(news), class: "media-para"  do %><small><i class="fa fa-calendar"></i><abbr class="published ml-2" itemprop="datePublished"><i><%= news.created_at.strftime("%b %d %Y") %></i> <i class="fa fa-hashtag ml-3 mr-1"></i><%= @category.name%></abbr></small>
                   <% end %>
-                  <div class="card-body p-0">
-                    <div class="favourite-posts-overlay mt-2"><a class="favourite-category" href="/"><%= category.name%></a></div>
-                    <p class="card-text font-weight-bold"><%= truncate(news.title, length: 50) %></p>
-                  </div>
-                </div>
-              <%end%>
-              <%end%>  
+                </div>  
+              </div>  
+              <h2 class="post-title">
+                <%= link_to news_path(news)  do %>
+                  <%= news.title %>
+                 <% end %>
+              </h2>
+              <small class="text-muted media-body-para">
+                <%= link_to news_path(news)  do %>
+                  <%= raw news.description.truncate(300)%>
+                <% end %>
+              </small>
+              <div class="mt-3">
+                <%= link_to news_path(news) , class: "read-more-btn pt-2 pb-2 pl-3 pr-3" do %>Read more
+                  <i class="fa fa-angle-double-right ml-2"></i>
+                <% end %>
+              </div>  
             </div>
-          </div>  
-        </div>
-        <% if @news.next && @news.previous.present? %>
-          <div class="card mt-4">
-            <div class="card-body p-0">
-              <ul class="post-pager">
-                <li class="next mt-3">
-                  <a class="older-link" href="" id="Blog1_blog-pager-older-link" rel="previous"><strong><%= link_to("Next Post", @news.next) if @news.next %><i class="fa fa-angle-right ml-2"></i></strong><br><div class="post-pager-title"><span>
-                   <%= @news.next.try(:title) %>
-                  </span></div></a>
-                </li>
-                <li class="previous">
-                  <a class="newer-link" href="" id="Blog1_blog-pager-newer-link" rel="next"> <strong> <i class="fa fa-angle-left mr-2"></i><%= link_to("Previous Post", @news.previous) if @news.previous %></strong><br><div class="post-pager-title"><span>
-                    <%= @news.previous.try(:title)%>
-                  </span></div></a>
-                  </li>
-              </ul> 
-            </div>  
           </div>
-        <% end %>  
+          <hr class="mt-4 mb-4">
+        <% end %>
       </div><!-- /.blog-main -->
-      <aside class="col-lg-4 col-md-12 blog-sidebar mt-md-4 mt-4">
+      <aside class="col-lg-4 col-md-12 blog-sidebar mt-md-2 mt-4 pr-lg-0">
         <div>
-          <div class="card rounded-0 p-0 p-md-3">
+          <div class="card rounded-0 p-0 p-md-3 ml-lg-5">
             <div class="card-body p-md-0 p-3">
               <div class="d-flex justify-content-between">
                 <div class="pb-0 pt-4 pt-md-0 pb-md-0 pl-2 pr-2"><p class="font-arial font-weight-bold sm-para">MONTHLY CURRENT AFFAIRS</p></div>
                 <div class="pb-0 pt-4 pt-md-0 pb-md-0 pl-2 pr-2"><i class="fa fa-calendar  text-muted"></i></div>
               </div>
-              <hr class="mt-0 ml-md-0 mr-md-0  ">
+              <hr class="mt-0 ml-md-0 mr-md-0 ">
               <ol class="list-unstyled mb-0">
                 <li class="archivedate">
                   <a href="#">August 2018</a> (109)
@@ -234,7 +205,7 @@
           </div>  
         </div>
         <div>
-          <div class="card rounded-0 p-0 p-md-3 mt-md-4 mt-4">
+          <div class="card rounded-0 p-0 p-md-3 mt-md-4 mt-4 ml-lg-5">
             <div class="card-body p-md-0 p-3">
               <div class="d-flex justify-content-between">
                 <div class="pb-0 pt-4 pt-md-0 pb-md-0 pl-2 pr-2"><p class="font-arial font-weight-bold sm-para">RECENT POSTS</p></div>
@@ -244,34 +215,34 @@
               <a href="#" class="media-link">
                 <div class="media">
                   <%= image_tag "post-img1.jpg", class: "mr-3 post-img"%>
-                  <div class="media-body ml-0">
+                  <div class="media-body ml-0 mt-lg-0 mt-3">
                     <div class="recent-title">भारत <font class="font-weight-bold">3 </font>जनवरी, <font class="font-weight-bold">2019 </font>को दूसरा चंद्र मिशन 'चंद्रयान <font class="font-weight-bold">-2' </font>करेगा लॉन्च</div>
                     <span class="text-muted"><small>August 13, 2018</small></span>
                   </div>
                 </div>
               </a>
               <a href="#" class="media-link">
-                <div class="media mt-md-3">
+                <div class="media mt-md-3 mt-4">
                      <%= image_tag "post-img2.jpg", class: "mr-3 post-img"%>
-                  <div class="media-body ml-0">
+                  <div class="media-body ml-0 mt-lg-0 mt-3">
                     <div class="recent-title">भारत <font class="font-weight-bold">3 </font>जनवरी, <font class="font-weight-bold">2019 </font>को दूसरा चंद्र मिशन 'चंद्रयान <font class="font-weight-bold">-2' </font>करेगा लॉन्च</div>
                     <span class="text-muted"><small>August 13, 2018</small></span>
                   </div>
                 </div>
               </a>  
               <a href="#" class="media-link">
-                <div class="media mt-md-3">
+                <div class="media mt-md-3 mt-4">
                   <%= image_tag "post-img3.jpg", class: "mr-3 post-img"%>
-                  <div class="media-body ml-0">
+                  <div class="media-body ml-0 mt-lg-0 mt-3">
                     <div class="recent-title">भारत <font class="font-weight-bold">3 </font>जनवरी, <font class="font-weight-bold">2019 </font>को दूसरा चंद्र मिशन 'चंद्रयान <font class="font-weight-bold">-2' </font>करेगा लॉन्च</div>
                     <span class="text-muted"><small>August 13, 2018</small></span>
                   </div>
                 </div>
               </a>
               <a href="" class="media-link">
-                <div class="media mt-md-3">
+                <div class="media mt-md-3 mt-4">
                   <%= image_tag "post-img4.jpg", class: "mr-3 post-img"%>
-                  <div class="media-body ml-0">
+                  <div class="media-body ml-0 mt-lg-0 mt-3">
                     <div class="recent-title">भारत <font class="font-weight-bold">3 </font>जनवरी, <font class="font-weight-bold">2019 </font>को दूसरा चंद्र मिशन 'चंद्रयान <font class="font-weight-bold">-2' </font>करेगा लॉन्च</div>
                     <span class="text-muted"><small>August 13, 2018</small></span>
                   </div>
@@ -289,12 +260,12 @@
       <p>
         All Rights Reserved by 
         <a href="#">
-           Pariksharthi <%= Time.current.year %>
+          Pariksharthi <%= Time.current.year %>
         </a>
       </p>
     </div>
     <div class="d-sm-none">
-      <div class="text-center d-flex flex-row justify-content-center">
+      <div class="text-center">
         <div class="p-2"><a href="https://www.facebook.com/pariksharthi.in/" class="text-dark"><i class="fa fa-facebook"></i></a></div>
         <div class="p-2"><a href="https://www.twitter.com/pariksharthi" class="text-dark"><i class="fa fa-twitter"></i></a></div>
         <!-- <div class="p-2"><i class="fa fa-instagram"></i></div>
@@ -311,3 +282,5 @@
     </div>
   </div>
 </div>
+
+
