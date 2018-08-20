@@ -117,22 +117,28 @@
             </div>
           </div>  
         </div>
-        <div class="card mt-4">
-          <div class="card-body p-0">
-            <ul class="post-pager">
-              <li class="next mt-3">
-                <a class="older-link" href="" id="Blog1_blog-pager-older-link" rel="previous"><strong><%= link_to("Next Post", @news.next) if @news.next %><i class="fa fa-angle-right ml-2"></i></strong><br><div class="post-pager-title"><span>
-                 <%= @news.next.try(:title) %>
-                </span></div></a>
-              </li>
-              <li class="previous">
-                <a class="newer-link" href="" id="Blog1_blog-pager-newer-link" rel="next"> <strong> <i class="fa fa-angle-left mr-2"></i><%= link_to("Previous Post", @news.previous) if @news.previous %></strong><br><div class="post-pager-title"><span>
-                  <%= @news.previous.try(:title)%>
-                </span></div></a>
-                </li>
-            </ul> 
-          </div>  
-        </div>
+        <% if @news.next && @news.previous.present? %>
+          <div class="card mt-4">
+            <div class="card-body p-0">
+              <ul class="post-pager">
+                <% if @news.next.present? %>
+                  <li class="next mt-3">
+                    <a class="older-link" href="" id="Blog1_blog-pager-older-link" rel="previous"><strong><%= link_to("Next Post", @news.next) if @news.next %><i class="fa fa-angle-right ml-2"></i></strong><br><div class="post-pager-title"><span>
+                     <%= @news.next.try(:title) %>
+                    </span></div></a>
+                  </li>
+                <% end %>  
+                <% if @news.previous.present? %>
+                  <li class="previous">
+                    <a class="newer-link" href="" id="Blog1_blog-pager-newer-link" rel="next"> <strong> <i class="fa fa-angle-left mr-2"></i><%= link_to("Previous Post", @news.previous) if @news.previous %></strong><br><div class="post-pager-title"><span>
+                      <%= @news.previous.try(:title)%>
+                    </span></div></a>
+                  </li>
+                <% end %>  
+              </ul> 
+            </div>  
+          </div>
+        <% end %>  
       </div><!-- /.blog-main -->
       <aside class="col-lg-4 col-md-12 blog-sidebar mt-md-4 mt-4">
         <div>
