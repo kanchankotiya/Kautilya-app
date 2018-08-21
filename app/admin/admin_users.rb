@@ -8,7 +8,9 @@ ActiveAdmin.register AdminUser do
     column :current_sign_in_at
     column :sign_in_count
     column :created_at
-    actions
+    column :actions do |resource|
+      links = link_to I18n.t('active_admin.view'), resource_path(resource)
+    end
   end
 
   filter :email

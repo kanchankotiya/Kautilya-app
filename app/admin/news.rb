@@ -46,7 +46,8 @@ permit_params :image, :description, :title, :created_at, :category_id
       input :title
       input :description, as: :ckeditor
       input :image, as: :file
-      input :category, :label => 'Category', :as => :select, include_blank: false
+
+      input :category, :label => 'Category', :as => :select, :prompt => 'Select category'
     end
     f.actions
   end
