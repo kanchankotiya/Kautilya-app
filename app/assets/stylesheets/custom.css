@@ -76,8 +76,8 @@ body{
 
 .owl-carousel .owl-nav.disabled, .owl-carousel .owl-dots.disabled {
      display: block !important; 
-
 }
+.owl-theme .owl-dots .owl-dot span{display: none;}
 
 .owl-theme .owl-dots {display: none;}
 .main-jumbo{
@@ -104,7 +104,12 @@ body{
   color: #888;
 }
 .blog-sidebar .card{
-  width: 354px;
+  width: 330px;
+  margin-left: 20%;
+}
+.category-sidbar{
+  width: 330px;
+  margin-left: 8%;
 }
 .media-para abbr{
   text-decoration: none;

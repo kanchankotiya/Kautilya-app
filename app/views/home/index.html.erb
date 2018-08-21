@@ -104,7 +104,6 @@
   <main role="main" class="container">
     <div class="row">
       <div class="col-lg-8 col-md-12 blog-main pl-lg-0">
-        
         <% @news.order("created_at DESC").first(10).each do |news|%>   
           <div class="media">
             <% if news.image.present? %>
