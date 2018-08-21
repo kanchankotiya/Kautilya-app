@@ -19,6 +19,6 @@ ActiveAdmin.register Category do
   end
     config.clear_action_items!
     action_item :only => :index do
-      link_to "Add Category" , "/admin/category/new" 
+      link_to "Add Category" , "/admin/categories/new" 
     end
 end
