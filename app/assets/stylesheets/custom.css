@@ -1,3 +1,4 @@
+
 body{
   background: #eeeeee none repeat scroll top left!important;
 }
@@ -31,18 +32,53 @@ body{
   text-decoration: none; 
   color: #cccaca;
 }
-#owl-demo .item{
+.owl-carousel .item{
   margin: 3px;
 }
-#owl-demo .item img{
+/*.owl-carousel .item img{
   display: block;
   width: 100%;
   height: auto;
-}
-#owl-demo .item img{
+}*/
+.owl-carousel .item img{
   width: 281px;
   height: 232px;
 }
+.owl-prev,
+.owl-next {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  border-radius: 50px;
+}
+
+.owl-theme .owl-nav [class*='owl-'] {
+  color: #040404 !important;
+  padding: 10px 15px !important;
+  background: #fff !important;
+  display: inline-block !important;
+  cursor: pointer !important;
+  border-radius: 50px !important;
+
+}
+
+.owl-prev {
+  left: 1rem;
+  display: none;
+
+}
+
+.owl-next {
+  right: 1rem;
+   display: none;
+
+}
+
+.owl-carousel .owl-nav.disabled, .owl-carousel .owl-dots.disabled {
+     display: block !important; 
+
+}
+
 .owl-theme .owl-dots {display: none;}
 .main-jumbo{
   background-color: #f8f8f8!important;
@@ -66,6 +102,9 @@ body{
 }
 .media-body-para a{
   color: #888;
+}
+.blog-sidebar .card{
+  width: 354px;
 }
 .media-para abbr{
   text-decoration: none;
@@ -141,7 +180,10 @@ body{
 .favourite-posts-overlay{
   margin-top: 35%;
 }
-.show-img img{width: 100%;}
+.show-img img{ 
+  width: 56%;
+  height: 269px;
+}
 .post-footer-icon {
   width: 22px;
   font-size: 18px;
@@ -287,6 +329,7 @@ ul.post-pager {
     width: 100%;
     height: auto;
   }
+ 
 }
 @media screen and (min-width: 768px) and (max-width: 991px)
 {

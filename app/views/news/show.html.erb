@@ -92,7 +92,13 @@
               <%= @news.description.html_safe%>
             </div>
             <div class="find-text mt-5 text-center">
-              <p>Find More News Related to <font class="font-weight-bold"><%= @news.category.name%></font></p>
+              <p>Find More News Related to 
+                <font class="font-weight-bold">
+                 <%= link_to category_path(@news.category), class: "text-dark" do%>
+                   <%= @news.category.name%>
+                 <% end %>  
+                </font>
+              </p>
             </div>
           </div>  
         </div>
@@ -107,8 +113,8 @@
               </span>
             </div>
             <div class="card-deck mt-4">
-              <% @categories.last(2).each do |category| %> 
-              <% category.news.last(2).each do |news|%>    
+              <% @categories.shuffle.last(3).each do |category| %> 
+              <% category.news.shuffle.last(3).each do |news|%>    
                 <div class="card border-0">
                   <% if news.image.present? %>
                     <%= image_tag news.image, class: "show-card-image"%>
@@ -116,7 +122,7 @@
                     <%= image_tag "dummy.jpg", class: "show-card-image" %>  
                   <% end %>
                   <div class="card-body p-0">
-                    <div class="favourite-posts-overlay mt-2"><a class="favourite-category" href="/"><%= category.name%></a></div>
+                    <div class="favourite-posts-overlay mt-2"><a class="favourite-category" href="/"><%= category.name %></a></div>
                     <p class="card-text font-weight-bold"><%= truncate(news.title, length: 50) %></p>
                   </div>
                 </div>
