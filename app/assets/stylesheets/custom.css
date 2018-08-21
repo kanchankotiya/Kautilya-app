@@ -334,6 +334,10 @@ ul.post-pager {
     width: 100%;
     height: auto;
   }
+  .owl-theme .owl-nav [class*='owl-']{
+    padding: 10px 8px !important;
+  }
+
  
 }
 @media screen and (min-width: 768px) and (max-width: 991px)
@@ -367,6 +371,7 @@ ul.post-pager {
   .search-icon{
     margin: 2px 28px 0px 0px;
   }
+
   
 }
 @media screen and (min-width: 992px) and (max-width: 1199px){

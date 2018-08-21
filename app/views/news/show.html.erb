@@ -40,30 +40,13 @@
         <li class="nav-item nav-item active">
          <a class=" font-weight-bold" href="/">Home</a>
         </li>
-        <li class="nav-item2">
-          <a class= "font-weight-bold" href="#">National</a>
-        </li>
-        <li class="nav-item2">
-          <a class="font-weight-bold" href="#">International</a>
-        </li>
-        <li class="nav-item2">
-          <a class="font-weight-bold" href="#">Sports</a>
-        </li>
-        <li class="nav-item2">
-          <a class=" font-weight-bold" href="#">Science and tech</a>
-        </li>
-        <li class="nav-item2">
-          <a class=" font-weight-bold" href="#"> Polity</a>
-        </li>
-        <li class="nav-item2">
-          <a class=" font-weight-bold" href="#"> Economics</a>
-        </li>
-        <li class="nav-item2">
-          <a class=" font-weight-bold" href="#">Security</a>
-        </li>
-        <li class="nav-item2">
-          <a class=" font-weight-bold" href="#">Miscellaneous</a>
-        </li>
+        <% @categories.each do |category|%>
+          <li class="nav-item2">
+            <%= link_to category_path(@news.category) do %>
+              <%= category.name%>
+            <% end %> 
+          </li>
+        <%end %> 
       </ul>
       <div class="search-icon ml-auto text d-lg-block d-md-none d-none">
         <i class="fa fa-search text-white font-weight-bold"></i>
@@ -122,7 +105,11 @@
                     <%= image_tag "dummy.jpg", class: "show-card-image" %>  
                   <% end %>
                   <div class="card-body p-0">
-                    <div class="favourite-posts-overlay mt-2"><a class="favourite-category" href="/"><%= category.name %></a></div>
+                    <div class="favourite-posts-overlay mt-2">
+                    <%= link_to category_path(@news.category),  class: "favourite-category" do %>
+                      <%= category.name %>
+                      </div>
+                    <% end %>  
                     <p class="card-text font-weight-bold"><%= truncate(news.title, length: 50) %></p>
                   </div>
                 </div>
