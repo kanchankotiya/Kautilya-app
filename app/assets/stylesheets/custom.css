@@ -35,11 +35,6 @@ body{
 .owl-carousel .item{
   margin: 3px;
 }
-/*.owl-carousel .item img{
-  display: block;
-  width: 100%;
-  height: auto;
-}*/
 .owl-carousel .item img{
   width: 281px;
   height: 232px;
@@ -61,7 +56,7 @@ body{
   border-radius: 50px !important;
 
 }
-
+.owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span{display: none;}
 .owl-prev {
   left: 1rem;
   display: none;
@@ -75,9 +70,8 @@ body{
 }
 
 .owl-carousel .owl-nav.disabled, .owl-carousel .owl-dots.disabled {
-     display: block !important; 
+  display: block !important; 
 }
-.owl-theme .owl-dots .owl-dot span{display: none;}
 
 .owl-theme .owl-dots {display: none;}
 .main-jumbo{
