@@ -91,7 +91,7 @@
             <div class="card-img-overlay text-center card-overlay-text">
              <div class="favourite-posts-overlay">
               <%#= link_to category_news_path(category), class: "favourite-category" do %>
-              <%= link_to category_path(news.category) do %>
+              <%= link_to category_path(news.category),class: "favourite-category"  do %>
                 <%= news.category.name %>
               <% end %>
              <h1><a href="#" class="favourite-posts-title"><p><%= news.title%></p></a></h1></div>
@@ -323,7 +323,7 @@
       items : 4,
       autoplay:true,
       autoplayTimeout:5000,
-      autoplayHoverPause:false,       
+      autoplayHoverPause:false      
     });
     $( ".owl-prev").html('<i class="fa fa-chevron-left"></i>');
     $( ".owl-next").html('<i class="fa fa-chevron-right"></i>'); 
@@ -337,6 +337,8 @@
       autoplayTimeout:5000,
       autoplayHoverPause:false         
     }); 
+    $( ".owl-prev").html('<i class="fa fa-chevron-left"></i>');
+    $( ".owl-next").html('<i class="fa fa-chevron-right"></i>'); 
   });
   
   window.history.pushState('', null, './');

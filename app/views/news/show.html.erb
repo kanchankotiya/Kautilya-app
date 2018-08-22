@@ -56,7 +56,7 @@
   <main role="main" class="container">
     <div class="row">
       <div class="col-lg-8 col-md-12 blog-main">
-        <div class="card mt-5">
+        <div class="card mt-4">
           <div class="card-body">
             <h3 class="post-title">
               <%= @news.title %>
@@ -122,16 +122,22 @@
           <div class="card mt-4">
             <div class="card-body p-0">
               <ul class="post-pager">
-                <li class="next mt-3">
-                  <a class="older-link" href="" id="Blog1_blog-pager-older-link" rel="previous"><strong><%= link_to("Next Post", @news.next) if @news.next %><i class="fa fa-angle-right ml-2"></i></strong><br><div class="post-pager-title"><span>
-                   <%= @news.next.try(:title) %>
-                  </span></div></a>
-                </li>
-                <li class="previous">
-                  <a class="newer-link" href="" id="Blog1_blog-pager-newer-link" rel="next"> <strong> <i class="fa fa-angle-left mr-2"></i><%= link_to("Previous Post", @news.previous) if @news.previous %></strong><br><div class="post-pager-title"><span>
-                    <%= @news.previous.try(:title)%>
-                  </span></div></a>
-                  </li>
+                <div class="row">
+                  <div class="col-md-6 mt-3 col-12">  
+                    <li class="previous mt-lg-0 mt-3 list-unstyled">
+                      <a class="newer-link" href="" id="Blog1_blog-pager-newer-link" rel="next"> <strong> <i class="fa fa-angle-left mr-2"></i><%= link_to("Previous Post", @news.previous) if @news.previous %></strong><br><div class="post-pager-title"><span>
+                        <%= @news.previous.try(:title)%>
+                      </span></div></a>
+                    </li>
+                  </div>  
+                  <div class="col-md-6 col-12">
+                    <li class="next mt-lg-3 mt-4  list-unstyled">
+                      <a class="older-link" href="" id="Blog1_blog-pager-older-link" rel="previous"><strong><%= link_to("Next Post", @news.next) if @news.next %><i class="fa fa-angle-right ml-2"></i></strong><br><div class="post-pager-title"><span>
+                       <%= @news.next.try(:title) %>
+                      </span></div></a>
+                    </li>
+                  </div>
+                </div>    
               </ul> 
             </div>  
           </div>
