@@ -24,9 +24,20 @@
               </div>
             <% end -%>
 
-            <div class="actions form-group">
-              <%= f.submit "Log in", class: "btn btn-primary btn-block"%>
+            <div class="actions form-group text-center">
+              <%= f.submit "Log in", class: "btn btn-primary"%>
             </div>
+            <div class="row">
+              <div class="col-md-6">
+                <a href="/users/auth/facebook" class="btn-block btn-social btn-facebook signin-facbook-button btn-aouth btn-reg1">
+                  <span class="fa fa-facebook"><font class="signup-aouth-btn"> Sign in with Facebook</font></span>
+                </a>
+              </div>
+              <div class="col-md-6 mt-lg-0 mt-4">
+                <a href="/users/auth/google_oauth2"  class="btn-block btn-social btn-google signin-btn-google btn-aouth btn-reg">
+                  <span class="fa fa-google"><font class="signup-aouth-btn"> Sign in with Google</font></span>
+                </a>
+              </div>
           <% end %>
         </div>  
       </div>  
