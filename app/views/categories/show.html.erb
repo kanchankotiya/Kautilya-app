@@ -40,34 +40,13 @@
         <li class="nav-item nav-item active">
          <a class=" font-weight-bold" href="/">Home</a>
         </li>
+        <% @categories.each do |category|%>
         <li class="nav-item2">
-          <%= link_to category_path(@category) do %>
-            National
+          <%= link_to category_path(category) do %>
+            <%= category.name%>
           <% end %> 
         </li>
-        <li class="nav-item2">
-          <%= link_to category_path(@category) do %>
-            International
-          <% end %> 
-        </li>
-        <li class="nav-item2">
-          <a class="font-weight-bold" href="#">Sports</a>
-        </li>
-        <li class="nav-item2">
-          <a class=" font-weight-bold" href="#">Science and tech</a>
-        </li>
-        <li class="nav-item2">
-          <a class=" font-weight-bold" href="#"> Polity</a>
-        </li>
-        <li class="nav-item2">
-          <a class=" font-weight-bold" href="#"> Economics</a>
-        </li>
-        <li class="nav-item2">
-          <a class=" font-weight-bold" href="#">Security</a>
-        </li>
-        <li class="nav-item2">
-          <a class=" font-weight-bold" href="#">Miscellaneous</a>
-        </li>
+        <%end %> 
       </ul>
       <div class="search-icon ml-auto text d-lg-block d-md-none d-none">
         <i class="fa fa-search text-white font-weight-bold"></i>
@@ -91,8 +70,11 @@
             <div class="media-body ml-md-3">
               <div class="row">
                 <div class="col text-muted">
-                  <%= link_to news_path(news), class: "media-para"  do %><small><i class="fa fa-calendar"></i><abbr class="published ml-2" itemprop="datePublished"><i><%= news.created_at.strftime("%b %d %Y") %></i> <i class="fa fa-hashtag ml-3 mr-1"></i><%= @category.name%></abbr></small>
+                  <%= link_to news_path(news), class: "media-para"  do %><small><i class="fa fa-calendar"></i><abbr class="published ml-2" itemprop="datePublished"><i>
                   <% end %>
+                  <%= news.created_at.strftime("%b %d %Y") %></i> <i class="fa fa-hashtag ml-3 mr-1"></i>
+                  <%= link_to category_path(news.category), class: "media-para"  do %><%= news.category.name%></abbr></small>
+                  <% end %> 
                 </div>  
               </div>  
               <h2 class="post-title">

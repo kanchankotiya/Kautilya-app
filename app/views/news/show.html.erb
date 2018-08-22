@@ -42,7 +42,7 @@
         </li>
         <% @categories.each do |category|%>
           <li class="nav-item2">
-            <%= link_to category_path(@news.category) do %>
+            <%= link_to category_path(category) do %>
               <%= category.name%>
             <% end %> 
           </li>
@@ -96,8 +96,8 @@
               </span>
             </div>
             <div class="card-deck mt-4">
-              <% @categories.shuffle.last(3).each do |category| %> 
-              <% category.news.shuffle.last(3).each do |news|%>    
+              <% @categories.order("id").last(2).each do |category| %> 
+              <% category.news.each do |news|%>    
                 <div class="card border-0">
                   <% if news.image.present? %>
                     <%= image_tag news.image, class: "show-card-image"%>
