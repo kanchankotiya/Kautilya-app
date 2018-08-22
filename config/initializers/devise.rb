@@ -258,7 +258,7 @@ Devise.setup do |config|
   # up on your models and hooks.
   config.omniauth :facebook, "2105613219687452", "203345cdfc58597cdf531e5e509dd1ad", callback_url: "https://kautilya-app.herokuapp.com/users/auth/facebook/callback", :scope => "email"
 
-  config.omniauth :google_oauth2, "595597062004-d39klrmqh4q2ms2mmrt2pbc7jojva0kb.apps.googleusercontent.com", "EIXYTILTxI9Z9DUsN3K-_1kO", callback_url: "https://kautilya-app.herokuapp.com/users/auth/google_oauth2/callback"
+  config.omniauth :google_oauth2, "908116242657-q6r676t9l64ngb6oemnjuv1aop09a56m.apps.googleusercontent.com", "OKYAeh0f87dy5MIhZ9YmOafG", callback_url: "https://kautilya-app.herokuapp.com/users/auth/google_oauth2/callback"
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
