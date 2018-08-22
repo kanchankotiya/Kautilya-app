@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users,  controllers: {
-    sessions: 'users/sessions'
+    sessions: 'users/sessions',
+    omniauth_callbacks: 'users/omniauth_callbacks'
   }
 
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -9,9 +10,8 @@ Rails.application.routes.draw do
   
 
   resources :news, only: [:show]
-  resources :categories
-  resources :categories do 
-    resources :news,only: [:show]
-  end
+  resources :categories, only: [:show]
+
+  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

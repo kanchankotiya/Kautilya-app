@@ -1,17 +1,25 @@
-<div class="container mt-5 mb-4">
+<div class="container">
  <div class="row">
-    <div class="col-md-6 offset-3">
-      <div class="card">
+    <div class="col-lg-6 offset-lg-3 col-md-12">
+      <div class="card mt-md-5 mt-5">
         <div class="card-header">
           <h2>Sign up</h2>
         </div>
         <div class="card-body">
           <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
             <%= devise_error_messages! %>
-
             <div class="form-group">
               <%= f.label :email %><br />
-              <%= f.email_field :email, autofocus: true, autocomplete: "email",  class: "form-control"  %>
+              <%= f.email_field :name, autofocus: true, autocomplete: "name",  class: "form-control"  %>
+            </div>
+            <div class="form-group">
+              <%= f.label :mobile_no %><br />
+              <%= f.email_field :mobile_no, autocomplete: "mobile_no",  class: "form-control"  %>
+            </div>
+            
+            <div class="form-group">
+              <%= f.label :email %><br />
+              <%= f.email_field :email,autocomplete: "email",  class: "form-control"  %>
             </div>
 
             <div class="form-group">
@@ -25,6 +33,19 @@
             <div class="form-group">
               <%= f.label :password_confirmation %><br />
               <%= f.password_field :password_confirmation, autocomplete: "off",  class: "form-control" %>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <a href="/users/auth/facebook" class="btn-block btn-social btn-facebook signin-facbook-button btn-aouth btn-reg1">
+                  <span class="fa fa-facebook"><font class="signup-aouth-btn"> Sign in with Facebook</font></span>
+                </a>
+              </div>
+              <div class="col-md-6">
+                <a href="/users/auth/google_oauth2"  class="btn-block btn-social btn-google signin-btn-google btn-aouth btn-reg">
+                  <span class="fa fa-google"><font class="signup-aouth-btn"> Sign in with Google</font></span>
+                </a>
+              </div>
             </div>
 
             <div class="actions form-group">

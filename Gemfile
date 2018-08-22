@@ -66,3 +66,6 @@ gem 'carrierwave'
 gem 'ckeditor'
 gem 'kaminari'
 gem 'mini_magick'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem "omniauth-google-oauth2"
