@@ -72,8 +72,8 @@ ActiveRecord::Schema.define(version: 20180822062104) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "provider"
     t.string "uid"
+    t.string "provider"
     t.string "name"
     t.string "mobile_no"
     t.index ["email"], name: "index_users_on_email", unique: true
