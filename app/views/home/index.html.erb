@@ -54,8 +54,26 @@
         <li class="nav-item2"><%= link_to "Sign-up", new_user_registration_path %></li>
       <% end %>  
     </ul>
-    <div class="search-icon ml-auto text d-lg-block d-md-none d-none">
+    <div class="search-icon ml-auto text d-lg-block d-md-none d-none" data-toggle="modal" data-target="#myModal">
       <i class="fa fa-search text-white font-weight-bold"></i>
+    </div>
+    <div class="modal search-model" id="myModal">
+      <div class="modal-dialog">
+        <a class="search-box-close" href="#">
+          <i class="fa fa-times"></i>
+        </a>
+        <div class="search-box-wrapper">
+          <p>
+            Start typing and press Enter to search
+          </p>
+          <form action="#" class="search-box" method="get" role="search">
+            <input class="search-input" name="q" placeholder="" type="text">
+            <i class="fa fa-search">
+            <input type="submit" value="">
+            </i>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 </nav>
@@ -249,42 +267,44 @@
               <div class="pb-0 pt-4 pt-md-0 pb-md-0 pl-2 pr-2"><i class="fa fa-ellipsis-v  text-muted"></i></div>
             </div>
             <hr class="mt-0 ml-md-0 mr-md-0">
-            <a href="#" class="media-link">
-              <div class="media">
-                <%= image_tag "post-img1.jpg", class: "mr-3 post-img"%>
-                <div class="media-body ml-0">
-                  <div class="recent-title">भारत <font class="font-weight-bold">3 </font>जनवरी, <font class="font-weight-bold">2019 </font>को दूसरा चंद्र मिशन 'चंद्रयान <font class="font-weight-bold">-2' </font>करेगा लॉन्च</div>
-                  <span class="text-muted"><small>August 13, 2018</small></span>
+            <% @news.order("created_at DESC").first(4).each do |news|%>  
+              <a href="#"><%= link_to news_path(news), class: "media-link" do%>
+                <div class="media mt-3">
+                  <%= image_tag news.image, class: "mr-3 post-img"%>
+                  <div class="media-body ml-0">
+                    <div class="recent-title"><%= news.title%></div>
+                    <span class="text-muted"><small><%= news.created_at.strftime("%b %d %Y")%></small></span>
+                  </div>
                 </div>
-              </div>
-            </a>
-            <a href="#" class="media-link">
-              <div class="media mt-md-3 mt-4">
-                   <%= image_tag "post-img2.jpg", class: "mr-3 post-img"%>
-                <div class="media-body ml-0 mt-lg-0 mt-3">
-                  <div class="recent-title">भारत <font class="font-weight-bold">3 </font>जनवरी, <font class="font-weight-bold">2019 </font>को दूसरा चंद्र मिशन 'चंद्रयान <font class="font-weight-bold">-2' </font>करेगा लॉन्च</div>
-                  <span class="text-muted"><small>August 13, 2018</small></span>
+              <% end %>
+              <!-- <a href="#" class="media-link">
+                <div class="media mt-md-3 mt-4">
+                     <%= image_tag "post-img2.jpg", class: "mr-3 post-img"%>
+                  <div class="media-body ml-0 mt-lg-0 mt-3">
+                    <div class="recent-title">भारत <font class="font-weight-bold">3 </font>जनवरी, <font class="font-weight-bold">2019 </font>को दूसरा चंद्र मिशन 'चंद्रयान <font class="font-weight-bold">-2' </font>करेगा लॉन्च</div>
+                    <span class="text-muted"><small>August 13, 2018</small></span>
+                  </div>
                 </div>
-              </div>
-            </a>  
-            <a href="#" class="media-link">
-              <div class="media mt-md-3 mt-4">
-                <%= image_tag "post-img3.jpg", class: "mr-3 post-img"%>
-                <div class="media-body ml-0 mt-lg-0 mt-3">
-                  <div class="recent-title">भारत <font class="font-weight-bold">3 </font>जनवरी, <font class="font-weight-bold">2019 </font>को दूसरा चंद्र मिशन 'चंद्रयान <font class="font-weight-bold">-2' </font>करेगा लॉन्च</div>
-                  <span class="text-muted"><small>August 13, 2018</small></span>
+              </a>  
+              <a href="#" class="media-link">
+                <div class="media mt-md-3 mt-4">
+                  <%= image_tag "post-img3.jpg", class: "mr-3 post-img"%>
+                  <div class="media-body ml-0 mt-lg-0 mt-3">
+                    <div class="recent-title">भारत <font class="font-weight-bold">3 </font>जनवरी, <font class="font-weight-bold">2019 </font>को दूसरा चंद्र मिशन 'चंद्रयान <font class="font-weight-bold">-2' </font>करेगा लॉन्च</div>
+                    <span class="text-muted"><small>August 13, 2018</small></span>
+                  </div>
                 </div>
-              </div>
-            </a>
-            <a href="" class="media-link">
-              <div class="media mt-md-3 mt-4">
-                <%= image_tag "post-img4.jpg", class: "mr-3 post-img"%>
-                <div class="media-body ml-0 mt-lg-0 mt-3">
-                  <div class="recent-title">भारत <font class="font-weight-bold">3 </font>जनवरी, <font class="font-weight-bold">2019 </font>को दूसरा चंद्र मिशन 'चंद्रयान <font class="font-weight-bold">-2' </font>करेगा लॉन्च</div>
-                  <span class="text-muted"><small>August 13, 2018</small></span>
+              </a>
+              <a href="" class="media-link">
+                <div class="media mt-md-3 mt-4">
+                  <%= image_tag "post-img4.jpg", class: "mr-3 post-img"%>
+                  <div class="media-body ml-0 mt-lg-0 mt-3">
+                    <div class="recent-title">भारत <font class="font-weight-bold">3 </font>जनवरी, <font class="font-weight-bold">2019 </font>को दूसरा चंद्र मिशन 'चंद्रयान <font class="font-weight-bold">-2' </font>करेगा लॉन्च</div>
+                    <span class="text-muted"><small>August 13, 2018</small></span>
+                  </div>
                 </div>
-              </div>
-            </a>  
+              </a>   -->
+            <% end %>  
           </div>  
         </div>  
       </div>
