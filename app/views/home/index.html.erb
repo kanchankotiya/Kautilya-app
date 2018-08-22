@@ -47,11 +47,11 @@
         </li>
       <% end %> 
       <% if user_signed_in? %>
-        <li class="nav-item2"><%= link_to "sign-out",destroy_user_session_path, method: :get %></li>
+        <li class="nav-item2"><%= link_to "Sign-out",destroy_user_session_path, method: :get %></li>
         <li class="nav-item2"><%= link_to "Edit",edit_user_registration_path %></li>
         <% else %>
-         <li class="nav-item2"><%= link_to "sign-in",  new_user_session_path  %></li>
-        <li class="nav-item2"><%= link_to "sign-up", new_user_registration_path %></li>
+         <li class="nav-item2"><%= link_to "Sign-in",  new_user_session_path  %></li>
+        <li class="nav-item2"><%= link_to "Sign-up", new_user_registration_path %></li>
       <% end %>  
     </ul>
     <div class="search-icon ml-auto text d-lg-block d-md-none d-none">
