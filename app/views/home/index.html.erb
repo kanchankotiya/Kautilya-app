@@ -1,318 +1,297 @@
-<div class="container main-container pl-0 pr-0 mb-4">
-  <header class="blog-header mt-lg-0 mt-md-3">
-    <div class="row flex-lg-nowrap d-md-flex flex-md-wrap justify-content-lg-between justify-content-md-center align-items-center no-gutters">
-      <div class="col-lg-4 col-12 pt-1  mt-2 mb-4 text-lg-left text-md-center text-center">
-        <a class="navbar-logo ml-lg-5" href="/"><%= image_tag "logo.png" %></a>
-      </div>
-      <div class="offset-lg-3 col-lg-4 text-md-center d-none d-lg-block d-md-block text-lg-right mr-3">
-        <a class="text-muted demo-icon" href="#">
-          <%= image_tag "icon1.png"%>
-        </a>
-        <a class="text-muted demo-icon  ml-sm-4" href="#">
-          <%= image_tag "icon2.png"%>
-        </a>
-        <a class="text-muted demo-icon  ml-sm-4" href="#">
-          <%= image_tag "icon3.png"%>
-        </a>
-      </div>
-      <div class="offset-lg-3 col-lg-4 text-center d-block d-lg-none d-md-none mr-3">
-        <a class="text-muted demo-icon" href="#">
-          <%= image_tag "icon1.png"%>
-        </a>
-        <a class="text-muted demo-icon  ml-sm-4" href="#">
-          <%= image_tag "icon2.png"%>
-        </a>
-        <a class="text-muted demo-icon  ml-sm-4" href="#">
-          <%= image_tag "icon3.png"%>
-        </a>
-      </div>
+<header class="blog-header mt-lg-0 mt-md-3">
+  <div class="row flex-lg-nowrap d-md-flex flex-md-wrap justify-content-lg-between justify-content-md-center align-items-center no-gutters">
+    <div class="col-lg-4 col-12 pt-1  mt-2 mb-4 text-lg-left text-md-center text-center">
+      <a class="navbar-logo ml-lg-5" href="/"><%= image_tag "logo.png" %></a>
     </div>
-  </header>
-  <nav class="navbar my-nav navbar-expand-lg pl-md-4 pr-md-0 pt-md-3 pb-md-3  mt-md-3 mt-3">
-    <button class="navbar-toggler ml-lg-auto sticky-top" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="fa fa-bars text-white"></span>
-    </button>
-    <div class="search-icon ml-auto text d-lg-none d-md-block d-block">
-      <i class="fa fa-search text-white font-weight-bold"></i>
+    <div class="offset-lg-3 col-lg-4 text-md-center d-none d-lg-block d-md-block text-lg-right mr-3">
+      <a class="text-muted demo-icon" href="#">
+        <%= image_tag "icon1.png"%>
+      </a>
+      <a class="text-muted demo-icon  ml-sm-4" href="#">
+        <%= image_tag "icon2.png"%>
+      </a>
+      <a class="text-muted demo-icon  ml-sm-4" href="#">
+        <%= image_tag "icon3.png"%>
+      </a>
     </div>
-    <div class="collapse navbar-collapse flex-md-column  sticky-md-top" id="navbarSupportedContent1">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item nav-item active">
-         <a class=" font-weight-bold" href="/">Home</a>
-        </li>
-        <% @categories.each do |category|%>
+    <div class="offset-lg-3 col-lg-4 text-center d-block d-lg-none d-md-none mr-3">
+      <a class="text-muted demo-icon" href="#">
+        <%= image_tag "icon1.png"%>
+      </a>
+      <a class="text-muted demo-icon  ml-sm-4" href="#">
+        <%= image_tag "icon2.png"%>
+      </a>
+      <a class="text-muted demo-icon  ml-sm-4" href="#">
+        <%= image_tag "icon3.png"%>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="navbar my-nav navbar-expand-lg pl-md-4 pr-md-0 pt-md-3 pb-md-3  mt-md-3 mt-3">
+  <button class="navbar-toggler ml-lg-auto sticky-top" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="fa fa-bars text-white"></span>
+  </button>
+  <div class="search-icon ml-auto text d-lg-none d-md-block d-block">
+    <i class="fa fa-search text-white font-weight-bold"></i>
+  </div>
+  <div class="collapse navbar-collapse flex-md-column  sticky-md-top" id="navbarSupportedContent1">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item  active">
+       <a class=" font-weight-bold" href="/">Home</a>
+      </li>
+      <% @categories.each do |category| %>
         <li class="nav-item2">
           <%= link_to category_path(category) do %>
-            <%= category.name%>
+            <%= category.name %>
           <% end %> 
         </li>
-        <%end %>   
-      </ul>
-      <div class="search-icon ml-auto text d-lg-block d-md-none d-none">
-        <i class="fa fa-search text-white font-weight-bold"></i>
-      </div>
-    </div>
-  </nav>
-  <div class="jumbotron pt-md-4 pb-md-4 pl-md-4 pr-md-4 main-jumbo mt-md-5 border-bottom border-top">
-    <div id="owl-demo" class="owl-carousel owl-theme d-sm-block d-none"> 
-      <% @news.order(" updated_at DESC").each do |news|%>    
-        <div class="item">
-          <div class="card border-0">
-            <% if news.image.present? %>
-              <%= image_tag news.image %>
-            <% else %>
-              <%= image_tag "dummy.jpg" %>  
-            <% end %>
-            <div class="card-img-overlay text-center card-overlay-text">
-             <div class="favourite-posts-overlay">
-              <%= link_to category_path(news.category), class: "favourite-category" do %>
-                <%= news.category.name%>
-              <% end %>
-              <h1><%= link_to news_path(news), class: "favourite-posts-title" do %><p><%= news.title%></p><%end%></h1></div>
-            </div>
-          </div>
-        </div>
-      <% end %>   
-    </div>
-
-    <div id="owl-demo1" class="owl-carousel owl-theme d-sm-none d-block">      
-      <% @news.order(" updated_at DESC").each do |news|%>    
-        <div class="item">
-          <div class="card border-0">
-            <% if news.image.present? %>
-              <%= link_to news_path(news), class: "media-para"  do %>
-                <%= image_tag news.image %>
-              <% end %>  
-            <% else %>
-              <%= link_to news_path(news), class: "media-para"  do %>
-                <%= image_tag "dummy.jpg" %>  
-              <% end %>    
-            <% end %>
-            <div class="card-img-overlay text-center card-overlay-text">
-             <div class="favourite-posts-overlay">
-              <%#= link_to category_news_path(category), class: "favourite-category" do %>
-              <%= link_to category_path(news.category),class: "favourite-category"  do %>
-                <%= news.category.name %>
-              <% end %>
-             <h1><a href="#" class="favourite-posts-title"><p><%= news.title%></p></a></h1></div>
-            </div>
-          </div>
-        </div>
+      <% end %> 
+      <% if user_signed_in? %>
+        <li class="nav-item2"><%= link_to "sign-out",destroy_user_session_path, method: :get %></li>
+        <li class="nav-item2"><%= link_to "Edit",edit_user_registration_path %></li>
+        <% else %>
+         <li class="nav-item2"><%= link_to "sign-in",  new_user_session_path  %></li>
+        <li class="nav-item2"><%= link_to "sign-up", new_user_registration_path %></li>
       <% end %>  
+    </ul>
+    <div class="search-icon ml-auto text d-lg-block d-md-none d-none">
+      <i class="fa fa-search text-white font-weight-bold"></i>
     </div>
   </div>
-  <main role="main" class="container">
-    <div class="row">
-      <div class="col-lg-8 col-md-12 blog-main pl-lg-0">
-        <% @news.order("created_at DESC").first(10).each do |news|%>   
-          <div class="media">
-            <% if news.image.present? %>
-              <%= link_to news_path(news), class: "media-para"  do %>
-                <%= image_tag news.image %>
-              <%end%>  
-            <% else %>
-              <%= link_to news_path(news), class: "media-para"  do %>
-                <%= image_tag "dummy.jpg" %>  
-               <%end%>    
+</nav>
+<div class="jumbotron pt-md-4 pb-md-4 pl-md-4 pr-md-4 main-jumbo mt-md-5 border-bottom border-top">
+  <div id="owl-demo" class="owl-carousel owl-theme d-sm-block d-none"> 
+    <% @news.order(" updated_at DESC").each do |news|%>    
+      <div class="item">
+        <div class="card border-0">
+          <% if news.image.present? %>
+            <%= image_tag news.image %>
+          <% else %>
+            <%= image_tag "dummy.jpg" %>  
+          <% end %>
+          <div class="card-img-overlay text-center card-overlay-text">
+           <div class="favourite-posts-overlay">
+            <%= link_to category_path(news.category), class: "favourite-category" do %>
+              <%= news.category.name%>
             <% end %>
-            <div class="media-body ml-md-3 mt-2 mt-lg-0">
-              <div class="row">
-                <div class="col text-muted">
-                  <%= link_to news_path(news), class: "media-para"  do %><small><i class="fa fa-calendar"></i><abbr class="published ml-2" itemprop="datePublished"><i><%= news.created_at.strftime("%b %d %Y") %></i> <i class="fa fa-hashtag ml-3 mr-1"></i>
-                  <% end %>
-                  <%= link_to category_path(news.category), class: "text-dark" do %>
-                      <%= news.category.name%>
-                  <% end %>
-                  </abbr></small>
-                </div>  
-              </div>  
-              <h2 class="post-title">
-                <%= link_to news_path(news)  do %>
-                  <%= news.title %>
-                 <% end %>
-              </h2>
-              <small class="text-muted media-body-para">
-                <%= link_to news_path(news)  do %>
-                  <%= raw news.description.truncate(300)%>
-                <% end %>
-              </small>
-              <div class="mt-3">
-                <%= link_to news_path(news) , class: "read-more-btn pt-2 pb-2 pl-3 pr-3" do %>Read more
-                  <i class="fa fa-angle-double-right ml-2"></i>
-                <% end %>
-              </div>  
-            </div>
+            <h1><%= link_to news_path(news), class: "favourite-posts-title" do %><p><%= news.title%></p><%end%></h1></div>
           </div>
-          <hr class="mt-4 mb-4">
-        <% end %>
-      </div><!-- /.blog-main -->
-      <aside class="col-lg-4 col-md-12 blog-sidebar mt-md-2 mt-4 pr-lg-0 ">
-        <div>
-          <div class="card rounded-0 p-0 p-md-3">
-            <div class="card-body p-md-0 p-3 pr-0">
-              <div class="d-flex justify-content-between">
-                <div class="pb-0 pt-4 pt-md-0 pb-md-0 pl-2 pr-2"><p class="font-arial font-weight-bold sm-para">MONTHLY CURRENT AFFAIRS</p></div>
-                <div class="pb-0 pt-4 pt-md-0 pb-md-0 pl-2 pr-2"><i class="fa fa-calendar  text-muted"></i></div>
-              </div>
-              <hr class="mt-0 ml-md-0 mr-md-0 ">
-              <ol class="list-unstyled mb-0">
-                <li class="archivedate">
-                  <a href="#">August 2018</a> (109)
-                </li>
-                <li class="archivedate">
-                  <a href="#">July 2018</a> (316)
-                </li>
-                <li class="archivedate">
-                  <a href="#">June 2018</a> (278)
-                </li>
-                <li class="archivedate">
-                  <a href="#">May 2018</a> (322)
-                </li>
-                <li class="archivedate">
-                  <a href="#">April 2018</a> (322)
-                </li>
-                <li class="archivedate">
-                  <a href="#">March 2018</a> (333)
-                </li>
-                <li class="archivedate">
-                  <a href="#">February 2018</a> (272)
-                </li>
-                <li class="archivedate">
-                  <a href="#">January 2018</a> (278)
-                </li>
-                <li class="archivedate">
-                  <a href="">December 2017</a> (342)
-                </li>
-                <li class="archivedate">
-                  <a href="">November 2017</a> (351)
-                </li>
-                <li class="archivedate">
-                  <a href="">October 2017</a> (343)
-                </li>
-                <li class="archivedate">
-                  <a href="">September 2017</a> (320)
-                </li>
-                <li class="archivedate">
-                  <a href="">August 2017</a> (401)
-                </li>
-                <li class="archivedate">
-                  <a href="">July 2017</a> (303)
-                </li>
-                <li class="archivedate">
-                  <a href="">June 2017</a> (297)
-                </li>
-                <li class="archivedate">
-                  <a href="">May 2017</a> (299)
-                </li>
-                <li class="archivedate">
-                  <a href="">April 2017</a> (300)
-                </li>
-                <li class="archivedate">
-                  <a href="">March 2017</a> (421)
-                </li>
-                <li class="archivedate">
-                  <a href="">February 2017</a> (405)
-                </li>
-                <li class="archivedate">
-                  <a href="">January 2017</a> (427)
-                </li>
-                <li class="archivedate">
-                  <a href="">December 2016</a> (379)
-                </li>
-                <li class="archivedate">
-                  <a href="">November 2016</a> (326)
-                </li>
-                <li class="archivedate">
-                  <a href="">October 2016</a> (338)
-                </li>
-                <li class="archivedate">
-                  <a href="">September 2016</a> (284)
-                </li>
-                <li class="archivedate">
-                  <a href="">August 2016</a> (91)
-                </li>
-              </ol>
-            </div>  
-          </div>  
         </div>
-        <div>
-          <div class="card rounded-0 p-0 p-md-3 mt-md-4 mt-4">
-            <div class="card-body p-md-0 p-3">
-              <div class="d-flex justify-content-between">
-                <div class="pb-0 pt-4 pt-md-0 pb-md-0 pl-2 pr-2"><p class="font-arial font-weight-bold sm-para">RECENT POSTS</p></div>
-                <div class="pb-0 pt-4 pt-md-0 pb-md-0 pl-2 pr-2"><i class="fa fa-ellipsis-v  text-muted"></i></div>
-              </div>
-              <hr class="mt-0 ml-md-0 mr-md-0">
-              <a href="#" class="media-link">
-                <div class="media">
-                  <%= image_tag "post-img1.jpg", class: "mr-3 post-img"%>
-                  <div class="media-body ml-0">
-                    <div class="recent-title">भारत <font class="font-weight-bold">3 </font>जनवरी, <font class="font-weight-bold">2019 </font>को दूसरा चंद्र मिशन 'चंद्रयान <font class="font-weight-bold">-2' </font>करेगा लॉन्च</div>
-                    <span class="text-muted"><small>August 13, 2018</small></span>
-                  </div>
-                </div>
-              </a>
-              <a href="#" class="media-link">
-                <div class="media mt-md-3 mt-4">
-                     <%= image_tag "post-img2.jpg", class: "mr-3 post-img"%>
-                  <div class="media-body ml-0 mt-lg-0 mt-3">
-                    <div class="recent-title">भारत <font class="font-weight-bold">3 </font>जनवरी, <font class="font-weight-bold">2019 </font>को दूसरा चंद्र मिशन 'चंद्रयान <font class="font-weight-bold">-2' </font>करेगा लॉन्च</div>
-                    <span class="text-muted"><small>August 13, 2018</small></span>
-                  </div>
-                </div>
-              </a>  
-              <a href="#" class="media-link">
-                <div class="media mt-md-3 mt-4">
-                  <%= image_tag "post-img3.jpg", class: "mr-3 post-img"%>
-                  <div class="media-body ml-0 mt-lg-0 mt-3">
-                    <div class="recent-title">भारत <font class="font-weight-bold">3 </font>जनवरी, <font class="font-weight-bold">2019 </font>को दूसरा चंद्र मिशन 'चंद्रयान <font class="font-weight-bold">-2' </font>करेगा लॉन्च</div>
-                    <span class="text-muted"><small>August 13, 2018</small></span>
-                  </div>
-                </div>
-              </a>
-              <a href="" class="media-link">
-                <div class="media mt-md-3 mt-4">
-                  <%= image_tag "post-img4.jpg", class: "mr-3 post-img"%>
-                  <div class="media-body ml-0 mt-lg-0 mt-3">
-                    <div class="recent-title">भारत <font class="font-weight-bold">3 </font>जनवरी, <font class="font-weight-bold">2019 </font>को दूसरा चंद्र मिशन 'चंद्रयान <font class="font-weight-bold">-2' </font>करेगा लॉन्च</div>
-                    <span class="text-muted"><small>August 13, 2018</small></span>
-                  </div>
-                </div>
-              </a>  
-            </div>  
-          </div>  
+      </div>
+    <% end %>   
+  </div>
+
+  <div id="owl-demo1" class="owl-carousel owl-theme d-sm-none d-block">      
+    <% @news.order(" updated_at DESC").each do |news|%>    
+      <div class="item">
+        <div class="card border-0">
+          <% if news.image.present? %>
+            <%= link_to news_path(news), class: "media-para"  do %>
+              <%= image_tag news.image %>
+            <% end %>  
+          <% else %>
+            <%= link_to news_path(news), class: "media-para"  do %>
+              <%= image_tag "dummy.jpg" %>  
+            <% end %>    
+          <% end %>
+          <div class="card-img-overlay text-center card-overlay-text">
+           <div class="favourite-posts-overlay">
+            <%#= link_to category_news_path(category), class: "favourite-category" do %>
+            <%= link_to category_path(news.category),class: "favourite-category"  do %>
+              <%= news.category.name %>
+            <% end %>
+           <h1><a href="#" class="favourite-posts-title"><p><%= news.title%></p></a></h1></div>
+          </div>
         </div>
-      </aside><!-- /.blog-sidebar -->
-    </div><!-- /.row -->
-  </main><!-- /.container -->
-  <hr class="mt-5">
-  <div class="footer pt-2 pb-2">
-    <div class="copy-right text-center">
-      <p>
-        All Rights Reserved by 
-        <a href="#">
-          Pariksharthi <%= Time.current.year %>
-        </a>
-      </p>
-    </div>
-    <div class="d-sm-none">
-      <div class="text-center d-flex flex-row justify-content-center">
-        <div class="p-2"><a href="https://www.facebook.com/pariksharthi.in/" class="text-dark"><i class="fa fa-facebook"></i></a></div>
-        <div class="p-2"><a href="https://www.twitter.com/pariksharthi" class="text-dark"><i class="fa fa-twitter"></i></a></div>
-        <!-- <div class="p-2"><i class="fa fa-instagram"></i></div>
-        <div class="p-2"><i class="fa fa-youtube"></i></div> -->
       </div>
-    </div>  
-    <div class="d-sm-block d-none ">
-      <div class="d-flex flex-row justify-content-center">
-        <div class="p-2"><a href="https://www.facebook.com/pariksharthi.in/" class="text-dark"><i class="fa fa-facebook"></i></a></div>
-        <div class="p-2"><a href="https://www.twitter.com/pariksharthi" class="text-dark"><i class="fa fa-twitter"></i></a></div>
-        <!-- <div class="p-2"><i class="fa fa-instagram"></i></div>
-        <div class="p-2"><i class="fa fa-youtube"></i></div> -->
-      </div>
-    </div>
+    <% end %>  
   </div>
 </div>
+<main role="main" class="container">
+  <div class="row">
+    <div class="col-lg-8 col-md-12 blog-main pl-lg-0">
+      <% @news.order("created_at DESC").first(10).each do |news|%>   
+        <div class="media">
+          <% if news.image.present? %>
+            <%= link_to news_path(news), class: "media-para"  do %>
+              <%= image_tag news.image %>
+            <%end%>  
+          <% else %>
+            <%= link_to news_path(news), class: "media-para"  do %>
+              <%= image_tag "dummy.jpg" %>  
+             <%end%>    
+          <% end %>
+          <div class="media-body ml-md-3 mt-2 mt-lg-0">
+            <div class="row">
+              <div class="col text-muted">
+                <%= link_to news_path(news), class: "media-para"  do %><small><i class="fa fa-calendar"></i><abbr class="published ml-2" itemprop="datePublished"><i><%= news.created_at.strftime("%b %d %Y") %></i> <i class="fa fa-hashtag ml-3 mr-1"></i>
+                <% end %>
+                <%= link_to category_path(news.category), class: "text-dark" do %>
+                    <%= news.category.name%>
+                <% end %>
+                </abbr></small>
+              </div>  
+            </div>  
+            <h2 class="post-title">
+              <%= link_to news_path(news)  do %>
+                <%= news.title %>
+               <% end %>
+            </h2>
+            <small class="text-muted media-body-para">
+              <%= link_to news_path(news)  do %>
+                <%= raw news.description.truncate(300)%>
+              <% end %>
+            </small>
+            <div class="mt-3">
+              <%= link_to news_path(news) , class: "read-more-btn pt-2 pb-2 pl-3 pr-3" do %>Read more
+                <i class="fa fa-angle-double-right ml-2"></i>
+              <% end %>
+            </div>  
+          </div>
+        </div>
+        <hr class="mt-4 mb-4">
+      <% end %>
+    </div><!-- /.blog-main -->
+    <aside class="col-lg-4 col-md-12 blog-sidebar mt-md-2 mt-4 pr-lg-0 ">
+      <div>
+        <div class="card rounded-0 p-0 p-md-3">
+          <div class="card-body p-md-0 p-3 pr-0">
+            <div class="d-flex justify-content-between">
+              <div class="pb-0 pt-4 pt-md-0 pb-md-0 pl-2 pr-2"><p class="font-arial font-weight-bold sm-para">MONTHLY CURRENT AFFAIRS</p></div>
+              <div class="pb-0 pt-4 pt-md-0 pb-md-0 pl-2 pr-2"><i class="fa fa-calendar  text-muted"></i></div>
+            </div>
+            <hr class="mt-0 ml-md-0 mr-md-0 ">
+            <ol class="list-unstyled mb-0">
+              <li class="archivedate">
+                <a href="#">August 2018</a> (109)
+              </li>
+              <li class="archivedate">
+                <a href="#">July 2018</a> (316)
+              </li>
+              <li class="archivedate">
+                <a href="#">June 2018</a> (278)
+              </li>
+              <li class="archivedate">
+                <a href="#">May 2018</a> (322)
+              </li>
+              <li class="archivedate">
+                <a href="#">April 2018</a> (322)
+              </li>
+              <li class="archivedate">
+                <a href="#">March 2018</a> (333)
+              </li>
+              <li class="archivedate">
+                <a href="#">February 2018</a> (272)
+              </li>
+              <li class="archivedate">
+                <a href="#">January 2018</a> (278)
+              </li>
+              <li class="archivedate">
+                <a href="">December 2017</a> (342)
+              </li>
+              <li class="archivedate">
+                <a href="">November 2017</a> (351)
+              </li>
+              <li class="archivedate">
+                <a href="">October 2017</a> (343)
+              </li>
+              <li class="archivedate">
+                <a href="">September 2017</a> (320)
+              </li>
+              <li class="archivedate">
+                <a href="">August 2017</a> (401)
+              </li>
+              <li class="archivedate">
+                <a href="">July 2017</a> (303)
+              </li>
+              <li class="archivedate">
+                <a href="">June 2017</a> (297)
+              </li>
+              <li class="archivedate">
+                <a href="">May 2017</a> (299)
+              </li>
+              <li class="archivedate">
+                <a href="">April 2017</a> (300)
+              </li>
+              <li class="archivedate">
+                <a href="">March 2017</a> (421)
+              </li>
+              <li class="archivedate">
+                <a href="">February 2017</a> (405)
+              </li>
+              <li class="archivedate">
+                <a href="">January 2017</a> (427)
+              </li>
+              <li class="archivedate">
+                <a href="">December 2016</a> (379)
+              </li>
+              <li class="archivedate">
+                <a href="">November 2016</a> (326)
+              </li>
+              <li class="archivedate">
+                <a href="">October 2016</a> (338)
+              </li>
+              <li class="archivedate">
+                <a href="">September 2016</a> (284)
+              </li>
+              <li class="archivedate">
+                <a href="">August 2016</a> (91)
+              </li>
+            </ol>
+          </div>  
+        </div>  
+      </div>
+      <div>
+        <div class="card rounded-0 p-0 p-md-3 mt-md-4 mt-4">
+          <div class="card-body p-md-0 p-3">
+            <div class="d-flex justify-content-between">
+              <div class="pb-0 pt-4 pt-md-0 pb-md-0 pl-2 pr-2"><p class="font-arial font-weight-bold sm-para">RECENT POSTS</p></div>
+              <div class="pb-0 pt-4 pt-md-0 pb-md-0 pl-2 pr-2"><i class="fa fa-ellipsis-v  text-muted"></i></div>
+            </div>
+            <hr class="mt-0 ml-md-0 mr-md-0">
+            <a href="#" class="media-link">
+              <div class="media">
+                <%= image_tag "post-img1.jpg", class: "mr-3 post-img"%>
+                <div class="media-body ml-0">
+                  <div class="recent-title">भारत <font class="font-weight-bold">3 </font>जनवरी, <font class="font-weight-bold">2019 </font>को दूसरा चंद्र मिशन 'चंद्रयान <font class="font-weight-bold">-2' </font>करेगा लॉन्च</div>
+                  <span class="text-muted"><small>August 13, 2018</small></span>
+                </div>
+              </div>
+            </a>
+            <a href="#" class="media-link">
+              <div class="media mt-md-3 mt-4">
+                   <%= image_tag "post-img2.jpg", class: "mr-3 post-img"%>
+                <div class="media-body ml-0 mt-lg-0 mt-3">
+                  <div class="recent-title">भारत <font class="font-weight-bold">3 </font>जनवरी, <font class="font-weight-bold">2019 </font>को दूसरा चंद्र मिशन 'चंद्रयान <font class="font-weight-bold">-2' </font>करेगा लॉन्च</div>
+                  <span class="text-muted"><small>August 13, 2018</small></span>
+                </div>
+              </div>
+            </a>  
+            <a href="#" class="media-link">
+              <div class="media mt-md-3 mt-4">
+                <%= image_tag "post-img3.jpg", class: "mr-3 post-img"%>
+                <div class="media-body ml-0 mt-lg-0 mt-3">
+                  <div class="recent-title">भारत <font class="font-weight-bold">3 </font>जनवरी, <font class="font-weight-bold">2019 </font>को दूसरा चंद्र मिशन 'चंद्रयान <font class="font-weight-bold">-2' </font>करेगा लॉन्च</div>
+                  <span class="text-muted"><small>August 13, 2018</small></span>
+                </div>
+              </div>
+            </a>
+            <a href="" class="media-link">
+              <div class="media mt-md-3 mt-4">
+                <%= image_tag "post-img4.jpg", class: "mr-3 post-img"%>
+                <div class="media-body ml-0 mt-lg-0 mt-3">
+                  <div class="recent-title">भारत <font class="font-weight-bold">3 </font>जनवरी, <font class="font-weight-bold">2019 </font>को दूसरा चंद्र मिशन 'चंद्रयान <font class="font-weight-bold">-2' </font>करेगा लॉन्च</div>
+                  <span class="text-muted"><small>August 13, 2018</small></span>
+                </div>
+              </div>
+            </a>  
+          </div>  
+        </div>  
+      </div>
+    </aside><!-- /.blog-sidebar -->
+  </div><!-- /.row -->
+</main><!-- /.container -->
+
 
 
 <script type="text/javascript">

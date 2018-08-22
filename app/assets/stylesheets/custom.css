@@ -359,8 +359,9 @@ ul.post-pager {
   .search-icon{
     margin: 2px 28px 0px 0px;
   }
-
-  
+  .blog-sidebar .card{
+    width: 100%;
+  }
 }
 @media screen and (min-width: 992px) and (max-width: 1199px){
   .navbar-logo h1{
