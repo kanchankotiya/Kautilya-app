@@ -31,8 +31,26 @@
   <button class="navbar-toggler ml-lg-auto sticky-top" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
     <span class="fa fa-bars text-white"></span>
   </button>
-  <div class="search-icon ml-auto text d-lg-none d-md-block d-block">
+  <div class="search-icon ml-auto text d-lg-none d-md-block d-block" data-toggle="modal" data-target="#myModal1">
     <i class="fa fa-search text-white font-weight-bold"></i>
+  </div>
+  <div class="modal search-model" id="myModal1">
+    <div class="modal-dialog">
+      <a class="search-box-close" href="#">
+        <i class="fa fa-times"></i>
+      </a>
+      <div class="search-box-wrapper">
+        <p>
+          Start typing and press Enter to search
+        </p>
+        <form action="#" class="search-box" method="get" role="search">
+          <input class="search-input" name="q" placeholder="" type="text">
+          <i class="fa fa-search">
+          <input type="submit" value="">
+          </i>
+        </form>
+      </div>
+    </div>
   </div>
   <div class="collapse navbar-collapse flex-md-column  sticky-md-top" id="navbarSupportedContent1">
     <ul class="navbar-nav mr-auto">
@@ -128,7 +146,7 @@
 <main role="main" class="container">
   <div class="row">
     <div class="col-lg-8 col-md-12 blog-main pl-lg-0">
-      <% @news.order("created_at DESC").first(10).each do |news|%>   
+      <% @news_paginate.order("created_at DESC").each do |news|%>   
         <div class="media">
           <% if news.image.present? %>
             <%= link_to news_path(news), class: "media-para"  do %>
@@ -169,6 +187,7 @@
         </div>
         <hr class="mt-4 mb-4">
       <% end %>
+      <%= paginate @news_paginate %>
     </div><!-- /.blog-main -->
     <aside class="col-lg-4 col-md-12 blog-sidebar mt-md-2 mt-4 pr-lg-0 ">
       <div>
@@ -180,133 +199,40 @@
             </div>
             <hr class="mt-0 ml-md-0 mr-md-0 ">
             <ol class="list-unstyled mb-0">
-              <li class="archivedate">
-                <a href="#">August 2018</a> (109)
-              </li>
-              <li class="archivedate">
-                <a href="#">July 2018</a> (316)
-              </li>
-              <li class="archivedate">
-                <a href="#">June 2018</a> (278)
-              </li>
-              <li class="archivedate">
-                <a href="#">May 2018</a> (322)
-              </li>
-              <li class="archivedate">
-                <a href="#">April 2018</a> (322)
-              </li>
-              <li class="archivedate">
-                <a href="#">March 2018</a> (333)
-              </li>
-              <li class="archivedate">
-                <a href="#">February 2018</a> (272)
-              </li>
-              <li class="archivedate">
-                <a href="#">January 2018</a> (278)
-              </li>
-              <li class="archivedate">
-                <a href="">December 2017</a> (342)
-              </li>
-              <li class="archivedate">
-                <a href="">November 2017</a> (351)
-              </li>
-              <li class="archivedate">
-                <a href="">October 2017</a> (343)
-              </li>
-              <li class="archivedate">
-                <a href="">September 2017</a> (320)
-              </li>
-              <li class="archivedate">
-                <a href="">August 2017</a> (401)
-              </li>
-              <li class="archivedate">
-                <a href="">July 2017</a> (303)
-              </li>
-              <li class="archivedate">
-                <a href="">June 2017</a> (297)
-              </li>
-              <li class="archivedate">
-                <a href="">May 2017</a> (299)
-              </li>
-              <li class="archivedate">
-                <a href="">April 2017</a> (300)
-              </li>
-              <li class="archivedate">
-                <a href="">March 2017</a> (421)
-              </li>
-              <li class="archivedate">
-                <a href="">February 2017</a> (405)
-              </li>
-              <li class="archivedate">
-                <a href="">January 2017</a> (427)
-              </li>
-              <li class="archivedate">
-                <a href="">December 2016</a> (379)
-              </li>
-              <li class="archivedate">
-                <a href="">November 2016</a> (326)
-              </li>
-              <li class="archivedate">
-                <a href="">October 2016</a> (338)
-              </li>
-              <li class="archivedate">
-                <a href="">September 2016</a> (284)
-              </li>
-              <li class="archivedate">
-                <a href="">August 2016</a> (91)
-              </li>
-            </ol>
+              <% @news_count.each do |a| %>
+                <li class="archivedate">
+                  <%= a.join(" ") %>
+                </li>  
+              <% end %>
+            </ol>  
           </div>  
         </div>  
       </div>
       <div>
-        <div class="card rounded-0 p-0 p-md-3 mt-md-4 mt-4">
-          <div class="card-body p-md-0 p-3">
-            <div class="d-flex justify-content-between">
-              <div class="pb-0 pt-4 pt-md-0 pb-md-0 pl-2 pr-2"><p class="font-arial font-weight-bold sm-para">RECENT POSTS</p></div>
-              <div class="pb-0 pt-4 pt-md-0 pb-md-0 pl-2 pr-2"><i class="fa fa-ellipsis-v  text-muted"></i></div>
-            </div>
-            <hr class="mt-0 ml-md-0 mr-md-0">
-            <% @news.order("created_at DESC").first(4).each do |news|%>  
-              <a href="#"><%= link_to news_path(news), class: "media-link" do%>
-                <div class="media mt-3">
-                  <%= image_tag news.image, class: "mr-3 post-img"%>
-                  <div class="media-body ml-0">
-                    <div class="recent-title"><%= news.title%></div>
-                    <span class="text-muted"><small><%= news.created_at.strftime("%b %d %Y")%></small></span>
-                  </div>
+      <div class="card rounded-0 p-0 p-md-3 mt-md-4 mt-4">
+        <div class="card-body p-md-0 p-3">
+          <div class="d-flex justify-content-between">
+            <div class="pb-0 pt-4 pt-md-0 pb-md-0 pl-2 pr-2"><p class="font-arial font-weight-bold sm-para">RECENT POSTS</p></div>
+            <div class="pb-0 pt-4 pt-md-0 pb-md-0 pl-2 pr-2"><i class="fa fa-ellipsis-v  text-muted"></i></div>
+          </div>
+          <hr class="mt-0 ml-md-0 mr-md-0">
+          <% @news.order("created_at DESC").first(4).each do |news|%>  
+            <a href="#"><%= link_to news_path(news), class: "media-link" do%>
+              <div class="media mt-3">
+                <% if news.image.present? %>
+                  <%= image_tag news.image, class: "mr-3 post-img" %>
+                <% else %>
+                  <%= image_tag "dummy.jpg", class: "mr-3 post-img" %>  
+                <% end %>
+                <div class="media-body ml-0">
+                  <div class="recent-title"><%= news.title%></div>
+                  <span class="text-muted"><small><%= news.created_at.strftime("%b %d %Y")%></small></span>
                 </div>
-              <% end %>
-              <!-- <a href="#" class="media-link">
-                <div class="media mt-md-3 mt-4">
-                     <%= image_tag "post-img2.jpg", class: "mr-3 post-img"%>
-                  <div class="media-body ml-0 mt-lg-0 mt-3">
-                    <div class="recent-title">भारत <font class="font-weight-bold">3 </font>जनवरी, <font class="font-weight-bold">2019 </font>को दूसरा चंद्र मिशन 'चंद्रयान <font class="font-weight-bold">-2' </font>करेगा लॉन्च</div>
-                    <span class="text-muted"><small>August 13, 2018</small></span>
-                  </div>
-                </div>
-              </a>  
-              <a href="#" class="media-link">
-                <div class="media mt-md-3 mt-4">
-                  <%= image_tag "post-img3.jpg", class: "mr-3 post-img"%>
-                  <div class="media-body ml-0 mt-lg-0 mt-3">
-                    <div class="recent-title">भारत <font class="font-weight-bold">3 </font>जनवरी, <font class="font-weight-bold">2019 </font>को दूसरा चंद्र मिशन 'चंद्रयान <font class="font-weight-bold">-2' </font>करेगा लॉन्च</div>
-                    <span class="text-muted"><small>August 13, 2018</small></span>
-                  </div>
-                </div>
-              </a>
-              <a href="" class="media-link">
-                <div class="media mt-md-3 mt-4">
-                  <%= image_tag "post-img4.jpg", class: "mr-3 post-img"%>
-                  <div class="media-body ml-0 mt-lg-0 mt-3">
-                    <div class="recent-title">भारत <font class="font-weight-bold">3 </font>जनवरी, <font class="font-weight-bold">2019 </font>को दूसरा चंद्र मिशन 'चंद्रयान <font class="font-weight-bold">-2' </font>करेगा लॉन्च</div>
-                    <span class="text-muted"><small>August 13, 2018</small></span>
-                  </div>
-                </div>
-              </a>   -->
-            <% end %>  
-          </div>  
+              </div>
+            <% end %>
+          <% end %>  
         </div>  
+      </div>  
       </div>
     </aside><!-- /.blog-sidebar -->
   </div><!-- /.row -->
@@ -316,17 +242,59 @@
 
 <script type="text/javascript">
   $(document).ready(function() {
-    $("#owl-demo").owlCarousel({
-      autoPlay: 1500, //Set AutoPlay to 3 seconds
-      slideBy: 4,
-      items : 4,
-      autoplay:true,
-      autoplayTimeout:5000,
-      autoplayHoverPause:false      
-    });
+   var owl = $('.owl-carousel');
+      owl.owlCarousel({
+        margin: 10,
+       
+          dots:true,
+          nav:true,
+      navRewind:true,
+
+    responsive: {
+      0: {
+        items: 1,
+          slideBy: 1          
+      },
+      600: {
+        items: 2,
+          slideBy: 2
+      },
+      1000: {
+        items: 4,
+          slideBy: 4
+      }
+    }
+  }) 
     $( ".owl-prev").html('<i class="fa fa-chevron-left"></i>');
-    $( ".owl-next").html('<i class="fa fa-chevron-right"></i>'); 
+    $( ".owl-next").html('<i class="fa fa-chevron-right"></i>');    
   });
+    
+  jQuery(document).ready(function() {
+  // Calculate number of Slides
+    var totalItems = $('.item').length;
+
+
+    // If there is only three slides
+    if (totalItems == 0) {
+      // Set loop option variable to false
+      var isLooped = false;
+      // Set nav option variable to false
+      var isNav = false;
+    } 
+    else {
+      // Set loop option variable to true
+      var isLooped = true;
+
+
+      // Set loop option variable to true
+      var isNav = true;
+    }
+  });
+  
+
+
+
+  
    $(document).ready(function() {
     $("#owl-demo1").owlCarousel({
       autoPlay: 1500, //Set AutoPlay to 3 seconds
@@ -334,11 +302,14 @@
       items : 1,
       autoplay:true,
       autoplayTimeout:5000,
-      autoplayHoverPause:false         
+      autoplayHoverPause:false ,
+
     }); 
     $( ".owl-prev").html('<i class="fa fa-chevron-left"></i>');
     $( ".owl-next").html('<i class="fa fa-chevron-right"></i>'); 
   });
+
+
   
   window.history.pushState('', null, './');
   $(window).on('popstate', function() {
