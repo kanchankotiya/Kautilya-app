@@ -5,6 +5,7 @@ class News < ApplicationRecord
   validates_presence_of :category, :message => "category must be required"
   belongs_to :category, optional: :true
   mount_uploader :image, ImageUploader
+  paginates_per 10
 
   def previous
     News.where(["id < ?", id]).last
