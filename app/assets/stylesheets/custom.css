@@ -485,6 +485,15 @@ pagination css*/
     }
     input.search-input{margin-left: 69%;width: 336px;}
     .search-box-wrapper .fa-search{left:94%;}
+    .pagination a, .pagination span.current, .pagination span.gap{
+      padding: 0px 18px;
+    }
+    .home-link{
+      margin-left: 38%;
+      padding: 6px;
+      width: 19%;
+      margin-bottom: -10%;
+    }
 
   }
   @media screen and (min-width: 768px) and (max-width: 991px)

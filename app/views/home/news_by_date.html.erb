@@ -31,10 +31,10 @@
   <button class="navbar-toggler ml-lg-auto sticky-top" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
     <span class="fa fa-bars text-white"></span>
   </button>
-  <div class="search-icon ml-auto text d-lg-none d-md-block d-block" data-toggle="modal" data-target="#myModal5">
+  <div class="search-icon ml-auto text d-lg-none d-md-block d-block" data-toggle="modal" data-target="#myModal1">
     <i class="fa fa-search text-white font-weight-bold"></i>
   </div>
-  <div class="modal search-model" id="myModal5">
+  <div class="modal search-model" id="myModal1">
     <div class="modal-dialog">
       <a class="search-box-close" href="#">
         <i class="fa fa-times"></i>
@@ -63,7 +63,7 @@
             <%= category.name %>
           <% end %> 
         </li>
-      <% end %>
+      <% end %> 
       <% if user_signed_in? %>
         <li class="nav-item2"><%= link_to "Sign-out",destroy_user_session_path, method: :get %></li>
         <li class="nav-item2"><%= link_to "Edit",edit_user_registration_path %></li>
@@ -72,10 +72,10 @@
         <li class="nav-item2"><%= link_to "Sign-up", new_user_registration_path %></li>
       <% end %>  
     </ul>
-    <div class="search-icon ml-auto text d-lg-block d-md-none d-none" data-toggle="modal" data-target="#myModal4">
+    <div class="search-icon ml-auto text d-lg-block d-md-none d-none" data-toggle="modal" data-target="#myModal">
       <i class="fa fa-search text-white font-weight-bold"></i>
     </div>
-    <div class="modal search-model" id="myModal4">
+    <div class="modal search-model" id="myModal">
       <div class="modal-dialog">
         <a class="search-box-close" href="#">
           <i class="fa fa-times"></i>
@@ -95,112 +95,45 @@
     </div>
   </div>
 </nav>
-<main role="main" class="container">
+<main role="main" class="container mt-5">
   <div class="row">
-    <div class="col-lg-8 col-md-12 blog-main">
-      <div class="card mt-4">
-        <div class="card-body">
-          <h3 class="post-title">
-            <%= @news.title %>
-          </h3> 
-          <small class="text-muted media-para ">
-            <abbr class="published" itemprop="datePublished" title="2018-08-11T10:46:00+05:30"><i><%= @news.created_at.strftime("%d %b %Y") %></i> 
-          </small>
-          <div class="show-img text-center mt-4">
-            <% if @news.image.present? %>
-              <%= image_tag @news.image %>
-            <% else %>
-              <%= image_tag "dummy.jpg" %>  
-            <% end %>
-          </div>
-          <div class="show-description-text mt-4">
-            <%= @news.description.html_safe%>
-          </div>
-          <div class="find-text mt-5 text-center">
-            <p>Find More News Related to 
-              <font class="font-weight-bold">
-               <%= link_to category_path(@news.category), class: "text-dark" do%>
-                 <%= @news.category.name%>
-               <% end %>  
-              </font>
-            </p>
-          </div>
-        </div>  
-      </div>
-      <div class="card mt-4">
-        <div class="card-body">
-          <div class="heading border-bottom pb-0">
-            <span class="post-footer-icon text-right">
-            <i aria-hidden="true" class="fa fa-rss"></i>
-            </span>
-            <span class="post-footer-title pb-2 font-weight-bold text-uppercase">
-              You Might Also Like
-            </span>
-          </div>
-          <div class="card-deck mt-4">
-            <% @news_count.shuffle.last(3).each do |news|%>    
-              <div class="card border-0">
-                <% if news.image.present? %>
-                  <%= image_tag news.image, class: "show-card-image"%>
-                <% else %>
-                  <%= image_tag "dummy.jpg", class: "show-card-image" %>
-                <% end %>
-                <div class="card-body p-0">
-                  <div class=" mt-2">
-                    <%= link_to category_path(news.category),  class: "favourite-category" do %>
-                      <%= news.category.name %>
-                    <% end %>  
-                  </div>
-                  <p class="card-text font-weight-bold"><%= truncate(news.title, length: 50) %></p>
-                </div>
-              </div>
-            <%end%>
-           
-          </div>
-        </div>  
-      </div>
-      <div class="card mt-4">
-        <div class="card-body p-0">
-          <ul class="post-pager">
-            <div class="row">
-              <div class="col-md-6 mt-3 col-12"> 
-                <% if  @news.previous.present? %>
-                  <li class="previous mt-lg-0 mt-3 list-unstyled">
-                    <a class="newer-link" href="" id="Blog1_blog-pager-newer-link" rel="next"> <strong><i class="fa fa-angle-left mr-2"></i><%= link_to("Previous Post", @news.previous) if @news.previous %></strong><br><div class="post-pager-title"><span>
-                      <%= @news.previous.try(:title)%>
-                    </span></div></a>
-                  </li>
-                <% end %>  
-              </div>  
-              <div class="col-md-6 col-12">
-                <% if  @news.next.present? %>
-                  <li class="next mt-lg-3 mt-4  list-unstyled">
-                    <a class="older-link" href="" id="Blog1_blog-pager-older-link" rel="previous"><strong><%= link_to("Next Post", @news.next) if @news.next %><i class="fa fa-angle-right ml-2"></i></strong><br><div class="post-pager-title"><span>
-                     <%= @news.next.try(:title) %>
-                    </span></div></a>
-                  </li>
-                <% end %>  
-              </div>
-            </div>    
-          </ul> 
-        </div>  
-      </div> 
+    <div class="col-lg-8 col-md-12 blog-main pl-lg-0">
+    <!-- Month wise grouped messages -->
+
+    <% if @month_wise_sorted_alerts.present? %>
+      <% @month_wise_sorted_alerts.each do |hash_elements|%>
+      <h3> <%= Date::MONTHNAMES[hash_elements.first] %> </h3>
+      <% hash_elements.last.each do |news| %>
+        
+          <%= news.title %>
+          <%= news.created_at.strftime('%b %d') %> 
+
+        <br />
+      <% end %> 
+      <br />
+      <% end %>
+    <% end %>
+      <% if @news_paginate.present? %>
+        <%= paginate @news_paginate %>
+      <% end %>  
     </div><!-- /.blog-main -->
-    <aside class="col-lg-4 col-md-12 blog-sidebar mt-md-4 mt-4">
+    <aside class="col-lg-4 col-md-12 blog-sidebar mt-md-2 mt-4 pr-lg-0 ">
       <div>
-        <div class="card rounded-0 p-0 p-md-3 ml-0">
-          <div class="card-body p-md-0 p-3">
+        <div class="card rounded-0 p-0 p-md-3">
+          <div class="card-body p-md-0 p-3 pr-0">
             <div class="d-flex justify-content-between">
               <div class="pb-0 pt-4 pt-md-0 pb-md-0 pl-2 pr-2"><p class="font-arial font-weight-bold sm-para">MONTHLY CURRENT AFFAIRS</p></div>
               <div class="pb-0 pt-4 pt-md-0 pb-md-0 pl-2 pr-2"><i class="fa fa-calendar  text-muted"></i></div>
             </div>
-            <hr class="mt-0 ml-md-0 mr-md-0  ">
+            <hr class="mt-0 ml-md-0 mr-md-0 ">
             <ol class="list-unstyled mb-0">
-              <% @news_count_created_at.each do |a| %>
-                <li class="archivedate">
-                  <%= a.join(" ") %>
-                </li>  
-              <% end %>
+              <%= link_to news_by_date_path(@month_wise_sorted_alerts) do%>
+                <% @news_count.each do |a| %>
+                  <li class="archivedate">
+                    <%= a.join(" ") %>
+                  </li>  
+                <%end %>
+              <% end %>  
             </ol>  
           </div>  
         </div>  
@@ -222,23 +155,23 @@
               <div class="pb-0 pt-4 pt-md-0 pb-md-0 pl-2 pr-2"><i class="fa fa-ellipsis-v  text-muted"></i></div>
             </div>
             <hr class="mt-0 ml-md-0 mr-md-0">
-            <% @news_count.order("created_at DESC").first(4).each do |news|%>  
-              <a href="#"><%= link_to news_path(news), class: "media-link" do%>
+            <!-- <%# @news.order("created_at DESC").first(4).each do |news|%>  
+              <a href="#"><%#= link_to news_path(news), class: "media-link" do%>
                 <div class="media mt-3">
-                  <% if news.image.present? %>
-                    <%= image_tag news.image, class: "mr-3 post-img" %>
-                  <% else %>
-                    <%= image_tag "dummy.jpg", class: "mr-3 post-img" %>  
-                  <% end %>
+                  <%# if news.image.present? %>
+                    <%#= image_tag news.image, class: "mr-3 post-img" %>
+                  <%# else %>
+                    <%#= image_tag "dummy.jpg", class: "mr-3 post-img" %>  
+                  <%# end %>
                   <div class="media-body ml-0">
-                    <div class="recent-title"><%= news.title%></div>
-                    <span class="text-muted"><small><%= news.created_at.strftime("%b %d %Y")%></small></span>
+                    <div class="recent-title"><%#= news.title%></div>
+                    <span class="text-muted"><small><%#= news.created_at.strftime("%b %d %Y")%></small></span>
                   </div>
                 </div>
-              <% end %>
-            <% end %>  
+              <%# end %>
+            <%# end %>   -->
           </div>  
-        </div> 
+        </div>  
       </div>
     </aside><!-- /.blog-sidebar -->
   </div><!-- /.row -->
@@ -246,3 +179,9 @@
 
 
 
+<script type="text/javascript"> 
+  // window.history.pushState('', null, './');
+  // $(window).on('popstate', function() {
+  //  location.reload(true);
+  // });
+</script> 

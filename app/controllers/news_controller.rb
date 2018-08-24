@@ -6,4 +6,6 @@ class NewsController < ApplicationController
     @news_count_created_at = News.all.map { |news| [Date::MONTHNAMES[news.created_at.month], news.created_at.year].join(' ') }
     .each_with_object(Hash.new(0)) { |month_year, counts| counts[month_year] += 1 }
   end
+
+  
 end

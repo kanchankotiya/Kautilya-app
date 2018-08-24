@@ -31,8 +31,26 @@
   <button class="navbar-toggler ml-lg-auto sticky-top" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
     <span class="fa fa-bars text-white"></span>
   </button>
-  <div class="search-icon ml-auto text d-lg-none d-md-block d-block">
+  <div class="search-icon ml-auto text d-lg-none d-md-block d-block" data-toggle="modal" data-target="#myModal3">
     <i class="fa fa-search text-white font-weight-bold"></i>
+  </div>
+  <div class="modal search-model" id="myModal3">
+    <div class="modal-dialog">
+      <a class="search-box-close" href="#">
+        <i class="fa fa-times"></i>
+      </a>
+      <div class="search-box-wrapper">
+        <p>
+          Start typing and press Enter to search
+        </p>
+        <form action="#" class="search-box" method="get" role="search">
+          <input class="search-input" name="q" placeholder="" type="text">
+          <i class="fa fa-search">
+          <input type="submit" value="">
+          </i>
+        </form>
+      </div>
+    </div>
   </div>
   <div class="collapse navbar-collapse flex-md-column  sticky-md-top" id="navbarSupportedContent1">
     <ul class="navbar-nav mr-auto">
@@ -54,8 +72,26 @@
         <li class="nav-item2"><%= link_to "Sign-up", new_user_registration_path %></li>
       <% end %> 
     </ul>
-    <div class="search-icon ml-auto text d-lg-block d-md-none d-none">
+     <div class="search-icon ml-auto text d-lg-block d-md-none d-none" data-toggle="modal" data-target="#myModal2">
       <i class="fa fa-search text-white font-weight-bold"></i>
+    </div>
+    <div class="modal search-model" id="myModal2">
+      <div class="modal-dialog">
+        <a class="search-box-close" href="#">
+          <i class="fa fa-times"></i>
+        </a>
+        <div class="search-box-wrapper">
+          <p>
+            Start typing and press Enter to search
+          </p>
+          <form action="#" class="search-box" method="get" role="search">
+            <input class="search-input" name="q" placeholder="" type="text">
+            <i class="fa fa-search">
+            <input type="submit" value="">
+            </i>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 </nav>
@@ -126,27 +162,40 @@
           </div>  
         </div>  
       </div>
-      <div>
       <div class="card rounded-0 p-0 p-md-3 mt-md-4 mt-4">
-        <div class="card-body p-md-0 p-3">
+        <div class="card-body p-md-0 P-0">
           <div class="d-flex justify-content-between">
-            <div class="pb-0 pt-4 pt-md-0 pb-md-0 pl-2 pr-2"><p class="font-arial font-weight-bold sm-para">RECENT POSTS</p></div>
-            <div class="pb-0 pt-4 pt-md-0 pb-md-0 pl-2 pr-2"><i class="fa fa-ellipsis-v  text-muted"></i></div>
-          </div>
+            <div class="pb-0 pt-0 pt-md-0 pb-md-0 pl-2 pr-2"><p class="font-arial font-weight-bold sm-para">ADVERTISMENT</p></div>
+          </div> 
           <hr class="mt-0 ml-md-0 mr-md-0">
-          <% @category.news.order("created_at DESC").first(4).each do |news|%>  
-            <a href="#"><%= link_to news_path(news), class: "media-link" do%>
-              <div class="media mt-3">
-                <%= image_tag news.image, class: "mr-3 post-img"%>
-                <div class="media-body ml-0">
-                  <div class="recent-title"><%= news.title%></div>
-                  <span class="text-muted"><small><%= news.created_at.strftime("%b %d %Y")%></small></span>
-                </div>
-              </div>
-            <% end %>
-          <% end %>  
+          <h6>Coming Soon...</h6>
         </div>  
-      </div>  
+      </div> 
+      <div>
+        <div class="card rounded-0 p-0 p-md-3 mt-md-4 mt-4">
+          <div class="card-body p-md-0 p-3">
+            <div class="d-flex justify-content-between">
+              <div class="pb-0 pt-4 pt-md-0 pb-md-0 pl-2 pr-2"><p class="font-arial font-weight-bold sm-para">RECENT POSTS</p></div>
+              <div class="pb-0 pt-4 pt-md-0 pb-md-0 pl-2 pr-2"><i class="fa fa-ellipsis-v  text-muted"></i></div>
+            </div>
+            <hr class="mt-0 ml-md-0 mr-md-0">
+            <% @category.news.order("created_at DESC").first(4).each do |news|%>  
+              <a href="#"><%= link_to news_path(news), class: "media-link" do%>
+                <div class="media mt-3">
+                  <% if news.image.present? %>
+                    <%= image_tag news.image, class: "mr-3 post-img" %>
+                  <% else %>
+                    <%= image_tag "dummy.jpg", class: "mr-3 post-img" %>  
+                  <% end %>
+                  <div class="media-body ml-0">
+                    <div class="recent-title"><%= news.title%></div>
+                    <span class="text-muted"><small><%= news.created_at.strftime("%b %d %Y")%></small></span>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>  
+          </div>  
+        </div>  
       </div>
     </aside><!-- /.blog-sidebar -->
   </div><!-- /.row -->
