@@ -28,12 +28,12 @@
         </li>
       <% end %> 
     </ul>
-    <div class="ml-auto d-lg-block d-md-none d-none">
-      <div class="signin-btn">
+    <div class="ml-auto d-lg-block d-md-none d-none buttons">
+      <div class="mt-0  ">
         <% if user_signed_in? %>
-         <%= link_to "Sign-out",destroy_user_session_path, method: :get, class: "text-muted demo-icon" %>
+         <%= link_to "Sign-out",destroy_user_session_path, method: :get, class: "demo-icon sign-out-btn font-weight-bold" %>
         <% else %>
-          <%= link_to "Login / Register",  new_user_session_path , class: "font-weight-bold mr-5 demo-icon" %>
+          <%= link_to "Login / Register",  new_user_session_path , class: "font-weight-bold mr-5 demo-icon signin-btn" %>
         <% end %>  
       </div>  
     </div> 

@@ -384,7 +384,14 @@ input.search-input {
   -webkit-appearance: button;
 }
 .form-search{margin-left: -7%;}
-
+.sign-out-btn {
+  margin-right: 24% !important;
+  margin-left: -24% !important;
+  background: #fa8223!important;
+  color: #fff;
+  padding: 8px 12px 8px 16px;
+  border-radius: 6px;
+}
 /*
 pagination css*/
 
@@ -438,23 +445,23 @@ pagination css*/
 }
 .signin-btn
 {
-  margin-right: 9%;
-  margin-left: -9%;
   background: #ff6d00;
   text-align: center;
-  padding: 7px 0px 7px 34px;
+  padding: 9px 21px 10px 35px;
   border-radius: 5px;
   color: #fff;
-  margin-top: -16%;
 }
+
+
 .header-social-icon{
   margin-right: 10%;
   margin-top: -3%;
 
 }
 .signin-btn a{color: #fff;}
-.signin-btn a:hover{text-decoration: none;}
+.signin-btn:hover, .sign-out-btn:hover{text-decoration: none;color:#fff;}
 .search_collapse{margin-top: -2%;margin-left: 72%;}
+.buttons{margin-top: -2%;}
 @media screen and (max-width: 575px)
 {
   .nav-item2 a{
