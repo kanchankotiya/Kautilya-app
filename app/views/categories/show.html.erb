@@ -3,27 +3,11 @@
     <div class="col-lg-4 col-12 pt-1  mt-2 mb-4 text-lg-left text-md-center text-center">
       <a class="navbar-logo ml-lg-5" href="/"><%= image_tag "logo.png" %></a>
     </div>
-    <div class="offset-lg-3 col-lg-4 text-md-center d-none d-lg-block d-md-block text-lg-right mr-3">
-      <a class="text-muted demo-icon" href="#">
-        <%= image_tag "icon1.png"%>
-      </a>
-      <a class="text-muted demo-icon  ml-sm-4" href="#">
-        <%= image_tag "icon2.png"%>
-      </a>
-      <a class="text-muted demo-icon  ml-sm-4" href="#">
-        <%= image_tag "icon3.png"%>
-      </a>
-    </div>
-    <div class="offset-lg-3 col-lg-4 text-center d-block d-lg-none d-md-none mr-3">
-      <a class="text-muted demo-icon" href="#">
-        <%= image_tag "icon1.png"%>
-      </a>
-      <a class="text-muted demo-icon  ml-sm-4" href="#">
-        <%= image_tag "icon2.png"%>
-      </a>
-      <a class="text-muted demo-icon  ml-sm-4" href="#">
-        <%= image_tag "icon3.png"%>
-      </a>
+    <div class="ml-auto d-lg-block d-md-none d-none">
+      <form class="form-inline form-search" action="#">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search">
+        <button class="btn btn-success" type="submit">Search</button>
+      </form>
     </div>
   </div>
 </header>
@@ -31,27 +15,6 @@
   <button class="navbar-toggler ml-lg-auto sticky-top" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
     <span class="fa fa-bars text-white"></span>
   </button>
-  <div class="search-icon ml-auto text d-lg-none d-md-block d-block" data-toggle="modal" data-target="#myModal3">
-    <i class="fa fa-search text-white font-weight-bold"></i>
-  </div>
-  <div class="modal search-model" id="myModal3">
-    <div class="modal-dialog">
-      <a class="search-box-close" href="#">
-        <i class="fa fa-times"></i>
-      </a>
-      <div class="search-box-wrapper">
-        <p>
-          Start typing and press Enter to search
-        </p>
-        <form action="#" class="search-box" method="get" role="search">
-          <input class="search-input" name="q" placeholder="" type="text">
-          <i class="fa fa-search">
-          <input type="submit" value="">
-          </i>
-        </form>
-      </div>
-    </div>
-  </div>
   <div class="collapse navbar-collapse flex-md-column  sticky-md-top" id="navbarSupportedContent1">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item  active">
@@ -64,35 +27,16 @@
           <% end %> 
         </li>
       <% end %> 
-      <% if user_signed_in? %>
-        <li class="nav-item2"><%= link_to "Sign-out",destroy_user_session_path, method: :get %></li>
-        <li class="nav-item2"><%= link_to "Edit",edit_user_registration_path %></li>
-        <% else %>
-         <li class="nav-item2"><%= link_to "Sign-in",  new_user_session_path  %></li>
-        <li class="nav-item2"><%= link_to "Sign-up", new_user_registration_path %></li>
-      <% end %> 
     </ul>
-     <div class="search-icon ml-auto text d-lg-block d-md-none d-none" data-toggle="modal" data-target="#myModal2">
-      <i class="fa fa-search text-white font-weight-bold"></i>
-    </div>
-    <div class="modal search-model" id="myModal2">
-      <div class="modal-dialog">
-        <a class="search-box-close" href="#">
-          <i class="fa fa-times"></i>
-        </a>
-        <div class="search-box-wrapper">
-          <p>
-            Start typing and press Enter to search
-          </p>
-          <form action="#" class="search-box" method="get" role="search">
-            <input class="search-input" name="q" placeholder="" type="text">
-            <i class="fa fa-search">
-            <input type="submit" value="">
-            </i>
-          </form>
-        </div>
-      </div>
-    </div>
+    <div class="ml-auto d-lg-block d-md-none d-none">
+      <div class="signin-btn">
+        <% if user_signed_in? %>
+         <%= link_to "Sign-out",destroy_user_session_path, method: :get, class: "text-muted demo-icon" %>
+        <% else %>
+          <%= link_to "Login / Register",  new_user_session_path , class: "font-weight-bold mr-5 demo-icon" %>
+        <% end %>  
+      </div>  
+    </div> 
   </div>
 </nav>
 <div class="show-container">
@@ -153,10 +97,11 @@
             </div>
             <hr class="mt-0 ml-md-0 mr-md-0 ">
             <ol class="list-unstyled mb-0">
-              <% @news_count.each do |a| %>
+              <% @news_by_month.each do |m,p| %>
                 <li class="archivedate">
-                  <%= a.join(" ") %>
-                </li>  
+                  <%= link_to m, news_by_month_path(:month => m)%>
+                  (<%= p  %>)
+                </li>
               <% end %>
             </ol>  
           </div>  
