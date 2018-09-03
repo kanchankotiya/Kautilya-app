@@ -1,3 +1,4 @@
+
 <% content_for :head do %>
   <meta property="og:title" content="<%= "#{@news.title}" %>">
   <% if @news.image.present? %>
@@ -8,7 +9,6 @@
   <meta property="og:description" content="<%= "#{@news.description}" %>">
   <meta property="og:type" content="article">
 <% end %>
-
 <header class="blog-header mt-lg-0 mt-md-3">
   <div class="row flex-lg-nowrap d-md-flex flex-md-wrap justify-content-lg-between justify-content-md-center align-items-center no-gutters">
     <div class="col-lg-4 col-12 pt-1  mt-2 mb-4 text-lg-left text-md-center text-center">
