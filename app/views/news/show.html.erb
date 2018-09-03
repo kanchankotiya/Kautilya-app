@@ -2,7 +2,7 @@
 <% content_for :head do %>
   <meta property="og:title" content="<%= "#{@news.title}" %>">
   <% if @news.image.present? %>
-    <meta property="og:image" content='<%= @news.image %>'>
+    <meta property="og:image" content='<%= "#{@news.image}" %>'>
   <% else %>
     <meta property="og:image" content="<%= image_url('dummy.jpg') %>">
   <% end %>
