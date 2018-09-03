@@ -112,15 +112,14 @@
             <i class="fa fa-facebook text-muted mr-2"></i>
            
             </a>
-            <a class="share-twitter-p" href="http://twitter.com/share?url=https://kautilya-app.herokuapp.com/news/<%= "#{@news.id}" %>"  target="_blank">
+            <a class="share-twitter-p" href="http://twitter.com/share?url=https://kautilya-app.herokuapp.com/news/<%= "#{@news.id}" %>"  target="_blank" rel="nofollow" >
             <i class="fa fa-twitter text-muted mr-2"></i>
             </a>
-
-            <a class="share-gplus-p" href="https://plus.google.com/share?url=https://hindicurrentaffairs.adda247.com/2018/09/bi-annual-talks-between-indian-and.html" rel="nofollow" target="_blank">
+            <a class="g-plus" data-action="share"  data-href="https://kautilya-app.herokuapp.com/news/<%= "#{@news.id}" %>" target="_blank" rel="nofollow" >
             <i class="fa fa-google-plus text-muted mr-2"></i>
             </a>
-            <a class="share-linkedin-p" href="http://www.linkedin.com/cws/share?url=https://hindicurrentaffairs.adda247.com/2018/09/bi-annual-talks-between-indian-and.html" rel="nofollow" target="_blank">
-            <i class="fa fa-linkedin text-muted mr-2"></i>
+            <a class="share-linkedin-p" href="http://www.linkedin.com/cws/share?url=http://twitter.com/share?url=https://kautilya-app.herokuapp.com/news/<%= "#{@news.id}" %>" rel="nofollow" target="_blank" rel="nofollow">
+            <i class="fa fa-linkedin text-muted mr-2 ml-2"></i>
             </a>
           </div>
         </div>  
@@ -248,6 +247,5 @@
     </aside><!-- /.blog-sidebar -->
   </div><!-- /.row -->
 </main><!-- /.container -->
-
 
 

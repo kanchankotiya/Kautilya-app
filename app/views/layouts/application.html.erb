@@ -9,9 +9,11 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= yield :head %>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
   </head>
 
   <body>
+  
     <div class="container main-container pl-0 pr-0 mb-4">
       <%= yield %>
       <%= render "layouts/footer" %>
