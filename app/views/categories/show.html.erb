@@ -11,10 +11,19 @@
     </div>
   </div>
 </header>
-<nav class="navbar my-nav navbar-expand-lg pl-md-4 pr-md-0 pt-md-3 pb-md-3  mt-md-3 mt-3">
+<nav class="navbar my-nav navbar-expand-lg pl-md-4 pr-md-0 pt-md-3 pb-md-3  mt-md-5 mt-3">
   <button class="navbar-toggler ml-lg-auto sticky-top" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
     <span class="fa fa-bars text-white"></span>
   </button>
+  <div class="ml-auto d-lg-none d-md-block d-none buttons">
+    <div class="mt-3">
+      <% if user_signed_in? %>
+       <%= link_to "Sign-out",destroy_user_session_path, method: :get, class: "demo-icon sign-out-btn font-weight-bold" %>
+      <% else %>
+        <%= link_to "Login / Register",  new_user_session_path , class: "font-weight-bold mr-5 demo-icon signin-btn" %>
+      <% end %>  
+    </div>  
+  </div> 
   <div class="collapse navbar-collapse flex-md-column  sticky-md-top" id="navbarSupportedContent1">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item  active">
@@ -26,6 +35,15 @@
             <%= category.name %>
           <% end %> 
         </li>
+      <% end %>
+      <% if user_signed_in? %>
+        <li class="nav-item2 d-lg-none d-sm-none d-block">
+          <%= link_to "Sign-out",destroy_user_session_path, method: :get %>
+        </li>  
+      <% else %>
+        <li class="nav-item2 d-lg-none d-sm-none d-block">
+          <%= link_to "Login / Register",  new_user_session_path  %>
+        </li>  
       <% end %> 
     </ul>
     <div class="ml-auto d-lg-block d-md-none d-none buttons">
