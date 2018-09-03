@@ -11,7 +11,7 @@
     </div>
   </div>
 </header>
-<nav class="navbar my-nav navbar-expand-lg pl-md-4 pr-md-0 pt-md-3 pb-md-3  mt-md-5 mt-3">
+<nav class="navbar my-nav navbar-expand-lg  mt-md-5 mt-3 p-0">
   <button class="navbar-toggler ml-lg-auto sticky-top" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
     <span class="fa fa-bars text-white"></span>
   </button>
@@ -24,30 +24,29 @@
       <% end %>  
     </div>  
   </div> 
-  <div class="collapse navbar-collapse flex-md-column  sticky-md-top" id="navbarSupportedContent1">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item  active">
-       <a class=" font-weight-bold" href="/">Home</a>
-      </li>
-      <% @categories.each do |category| %>
-        <li class="nav-item2">
-          <%= link_to category_path(category) do %>
-            <%= category.name %>
-          <% end %> 
-        </li>
-      <% end %>
-      <% if user_signed_in? %>
-        <li class="nav-item2 d-lg-none d-sm-none d-block">
-          <%= link_to "Sign-out",destroy_user_session_path, method: :get %>
-        </li>  
-      <% else %>
-        <li class="nav-item2 d-lg-none d-sm-none d-block">
-          <%= link_to "Login / Register",  new_user_session_path  %>
-        </li>  
-      <% end %> 
-    </ul>
+  <div class="collapse navbar-collapse  sticky-md-top" id="navbarSupportedContent1">
+    <nav class="navbar navbar-inverse wide-menu p-0">
+      <div class="container p-0">
+        <div class="collapse navbar-collapse" id="secundary-nav">
+          <ul class="nav navbar-nav navbar-left">
+          <li class="active dropdown main-menu-active">
+          <a href="/"> <i class="fa fa-home"></i> </a>
+          </li>
+          <% @categories.each do |category| %>
+            <li class="dropdown main-menu-active">
+              <%= link_to category_path(category) do %>
+                <%= category.name %>
+              <% end %> 
+            </li>
+          <% end %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
     <div class="ml-auto d-lg-block d-md-none d-none buttons">
-      <div class="mt-0  ">
+      <div class="mt-4">
         <% if user_signed_in? %>
          <%= link_to "Sign-out",destroy_user_session_path, method: :get, class: "demo-icon sign-out-btn font-weight-bold" %>
         <% else %>
@@ -103,7 +102,9 @@
       <div class="text-center home-link">
         <%= link_to "Home", root_path %>
       </div> 
-      <%= paginate @news_pag %>
+      <% if @news.present? %>
+        <%= paginate @news_pag %>
+      <% end %>  
     </div><!-- /.blog-main -->
     <aside class="col-lg-4 col-md-12 category-sidbar mt-md-2 mt-4 pr-lg-0">
       <div>

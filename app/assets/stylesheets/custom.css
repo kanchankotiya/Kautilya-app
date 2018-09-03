@@ -1,7 +1,10 @@
 body{
   background: #eeeeee none repeat scroll top left!important;
 }
-
+.fa.fa-home
+{
+  font-size: 20px;
+}
 .main-menu-active.active>a {
   padding: 15px;
 }
