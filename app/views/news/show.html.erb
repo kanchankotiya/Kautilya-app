@@ -1,14 +1,10 @@
 <% content_for :head do %>
-  <meta property="og:url" content="<%= "#{root_url}news/#{@news.id}" %>">
   <meta property="og:title" content="<%= "#{@news.title}" %>">
-  <!-- <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="<%#= "#{@professional.name} | #{@professional.title}" %>"> -->
   <% if @news.image.present? %>
     <meta property="og:image" content="<%= "#{@news.image}" %>">
   <% else %>
     <meta property="og:image" content="<%= image_url('dummy.jpg') %>">
   <% end %>
-<!--   <meta property="fb:app_id" content="<%#= Rails.application.secrets.secret_fb_id %>"> -->
   <meta property="og:description" content="<%= "#{@news.description}" %>">
   <meta property="og:type" content="article">
 <% end %>
@@ -111,8 +107,9 @@
             <span>
             <i aria-hidden="true" class="fa fa-share-square-o mr-2"></i>
             </span>
-            <a class="share-facebook-p" href="http://www.facebook.com/sharer.php?u=https://kautilya-app.herokuapp.com/news/<%= @news.id %>/<%= @news.title%>" class="fb-xfbml-parse-ignore" rel="nofollow" target="_blank">
+            <a class="share-facebook-p" href="http://www.facebook.com/sharer.php?u=https://kautilya-app.herokuapp.com/news/<%= @news.id %> |<%= @news.title%>" class="fb-xfbml-parse-ignore" rel="nofollow" target="_blank">
             <i class="fa fa-facebook text-muted mr-2"></i>
+           
             </a>
             <a class="share-twitter-p" href="http://twitter.com/share?url=https://hindicurrentaffairs.adda247.com/2018/09/bi-annual-talks-between-indian-and.html" rel="nofollow" target="_blank">
             <i class="fa fa-twitter text-muted mr-2"></i>
