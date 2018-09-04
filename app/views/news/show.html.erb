@@ -109,17 +109,18 @@
             <i aria-hidden="true" class="fa fa-share-square-o mr-2"></i>
             </span>
             <a class="share-facebook-p" href="http://www.facebook.com/sharer.php?u=https://kautilya-app.herokuapp.com/news/<%= @news.id %> |<%= @news.title%>" class="fb-xfbml-parse-ignore" rel="nofollow" target="_blank">
-            <i class="fa fa-facebook text-muted mr-2"></i>
+            <i class="fa fa-facebook text-dark mr-2"></i>
            
             </a>
             <a class="share-twitter-p" href="http://twitter.com/share?url=https://kautilya-app.herokuapp.com/news/<%= "#{@news.id}" %>"  target="_blank" rel="nofollow" >
-            <i class="fa fa-twitter text-muted mr-2"></i>
+            <i class="fa fa-twitter text-dark mr-2"></i>
             </a>
-            <a class="g-plus" data-action="share"  data-href="https://kautilya-app.herokuapp.com/news/<%= "#{@news.id}" %>" target="_blank" rel="nofollow" >
-            <i class="fa fa-google-plus text-muted mr-2"></i>
+            <a href="https://plus.google.com/share?url=https://kautilya-app.herokuapp.com/news/<%= "#{@news.id}" %>" onclick="javascript:window.open(this.href,
+              '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes);return false;"><img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_E_dZsaKY2gTpGIiTEcJZPSoCwT55-yLiyTxFvWU1DkWdkSUE" alt="Share on Google+"/ style="width: 17px;"></a>
             </a>
             <a class="share-linkedin-p" href="http://www.linkedin.com/cws/share?url=http://twitter.com/share?url=https://kautilya-app.herokuapp.com/news/<%= "#{@news.id}" %>" rel="nofollow" target="_blank" rel="nofollow">
-            <i class="fa fa-linkedin text-muted mr-2 ml-2"></i>
+            <i class="fa fa-linkedin text-dark mr-2 ml-2"></i>
             </a>
           </div>
         </div>  

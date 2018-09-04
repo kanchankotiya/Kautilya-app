@@ -8,6 +8,9 @@ body{
 .main-menu-active.active>a {
   padding: 15px;
 }
+.main-menu-active.active{
+  background-color: #0a2a44;
+}
 .share-post{
   margin-top: -3%;
 }
@@ -16,7 +19,9 @@ body{
   border-right: 1px solid rgba(0, 0, 0, 0.08);
   padding: 11px;
 }
-
+.main-menu-active:hover{
+  background-color: #0a2a44;
+}
 
 .nav>li {
   display: block;
@@ -71,6 +76,8 @@ body{
   position: relative;
   width: 1212px;
   left: -6px;
+  box-shadow: 0px 20px 20px #c5c5c3;
+  z-index:999;
 }
 
 .my-nav::before {

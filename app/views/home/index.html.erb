@@ -30,7 +30,7 @@
         <div class="collapse navbar-collapse" id="secundary-nav">
           <ul class="nav navbar-nav navbar-left">
           <li class="active dropdown main-menu-active">
-          <a href="/"> <i class="fa fa-home"></i> </a>
+            <a href="/"><i class="fa fa-home"></i> </a>
           </li>
           <% @categories.each do |category| %>
             <li class="dropdown main-menu-active">
@@ -288,4 +288,15 @@
   $(window).on('popstate', function() {
    location.reload(true);
   });
+
+  // // Add active class to the current button (highlight it)
+  // var header = document.getElementById("navbar-nav");
+  // var lis = header.getElementsByClassName("main-menu-active");
+  // for (var i = 0; i < lis.length; i++) {
+  //   lis[i].addEventListener("click", function() {
+  //     var current = document.getElementsByClassName("active");
+  //     current[0].className = current[0].className.replace(" active", "");
+  //     this.className += " active";
+  //   });
+  // }
 </script> 
