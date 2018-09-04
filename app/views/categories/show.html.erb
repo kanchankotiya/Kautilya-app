@@ -1,5 +1,6 @@
 <header class="blog-header mt-lg-0 mt-md-3">
-  <div class="row flex-lg-nowrap d-md-flex flex-md-wrap justify-content-lg-between justify-content-md-center align-items-center no-gutters">
+  <div class="row
+   flex-lg-nowrap d-md-flex flex-md-wrap justify-content-lg-between justify-content-md-center align-items-center no-gutters">
     <div class="col-lg-4 col-12 pt-1  mt-2 mb-4 text-lg-left text-md-center text-center">
       <a class="navbar-logo ml-lg-5" href="/"><%= image_tag "logo.png" %></a>
     </div>
@@ -11,40 +12,37 @@
     </div>
   </div>
 </header>
-<nav class="navbar my-nav navbar-expand-lg  mt-md-5 mt-3 p-0">
-  <button class="navbar-toggler ml-lg-auto sticky-top" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="fa fa-bars text-white"></span>
-  </button>
-  <div class="ml-auto d-lg-none d-md-block d-none buttons">
-    <div class="mt-3">
+<nav class="navbar my-nav navbar-expand-lg mt-md-5 mt-5 p-lg-0 p-md-2">
+  <div  class=" ml-lg-4 navbar-toggler sticky-top" data-toggle="collapse" data-target="#demo"><span class="fa fa-bars text-white"></span>
+  </div>
+  <div class="ml-auto d-lg-none d-md-block d-block buttons">
+    <div class="mt-2">
       <% if user_signed_in? %>
        <%= link_to "Sign-out",destroy_user_session_path, method: :get, class: "demo-icon sign-out-btn font-weight-bold" %>
       <% else %>
-        <%= link_to "Login / Register",  new_user_session_path , class: "font-weight-bold mr-5 demo-icon signin-btn" %>
+        <%= link_to "Login / Register",  new_user_session_path , class: "font-weight-bold demo-icon signin-btn" %>
       <% end %>  
     </div>  
   </div> 
-  <div class="collapse navbar-collapse  sticky-md-top" id="navbarSupportedContent1">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent1">
     <nav class="navbar navbar-inverse wide-menu p-0">
       <div class="container p-0">
         <div class="collapse navbar-collapse" id="secundary-nav">
           <ul class="nav navbar-nav navbar-left">
-          <li class="active dropdown main-menu-active">
-          <a href="/"> <i class="fa fa-home"></i> </a>
-          </li>
-          <% @categories.each do |category| %>
-            <li class="dropdown main-menu-active">
-              <%= link_to category_path(category) do %>
-                <%= category.name %>
-              <% end %> 
+            <li class="active dropdown main-menu-active">
+              <a href="/"><i class="fa fa-home"></i> </a>
             </li>
-          <% end %>
+            <% @categories.each do |category| %>
+              <li class="dropdown main-menu-active">
+                <%= link_to category_path(category) do %>
+                  <%= category.name %>
+                <% end %> 
+              </li>
+            <% end %>
           </ul>
         </div>
       </div>
     </nav>
-
-
     <div class="ml-auto d-lg-block d-md-none d-none buttons">
       <div class="mt-4">
         <% if user_signed_in? %>
@@ -56,6 +54,20 @@
     </div> 
   </div>
 </nav>
+<div id="demo" class="collapse">
+  <ul class="nav navbar-nav">
+    <li class="active dropdown main-menu-active">
+      <a href="/"><i class="fa fa-home"></i> </a>
+    </li>
+    <% @categories.each do |category| %>
+      <li class="dropdown main-menu-active">
+        <%= link_to category_path(category) do %>
+          <%= category.name %>
+        <% end %> 
+      </li>
+    <% end %>
+  </ul>
+</div>
 <div class="show-container mt-4">
   <div class="centered text-white d-sm-block d-none"><h4>Showing Posts With Label <%= @category.name%>. <a href="/"><u>Show  All Posts</u></a></h4></div>
   <div class="centered text-white d-sm-none d-block"><h5>Showing Posts With Label <%= @category.name%>. <a href="/"><u>Show  All Posts</u></a></h5></div>
@@ -145,17 +157,19 @@
             <hr class="mt-0 ml-md-0 mr-md-0">
             <% @category.news.order("created_at DESC").first(4).each do |news|%>  
               <a href="#"><%= link_to news_path(news), class: "media-link" do%>
-                <div class="media mt-3">
-                  <% if news.image.present? %>
-                    <%= image_tag news.image, class: "mr-3 post-img" %>
-                  <% else %>
-                    <%= image_tag "dummy.jpg", class: "mr-3 post-img" %>  
-                  <% end %>
-                  <div class="media-body ml-0">
-                    <div class="recent-title"><%= news.title%></div>
-                    <span class="text-muted"><small><%= news.created_at.strftime("%b %d %Y")%></small></span>
+                <div class="post-media">
+                  <div class="media mt-3">
+                    <% if news.image.present? %>
+                      <%= image_tag news.image, class: "mr-3 post-img" %>
+                    <% else %>
+                      <%= image_tag "dummy.jpg", class: "mr-3 post-img" %>  
+                    <% end %>
+                    <div class="media-body ml-0">
+                      <div class="recent-title"><%= news.title%></div>
+                      <span class="text-muted"><small><%= news.created_at.strftime("%b %d %Y")%></small></span>
+                    </div>
                   </div>
-                </div>
+              </div>
               <% end %>
             <% end %>  
           </div>  
