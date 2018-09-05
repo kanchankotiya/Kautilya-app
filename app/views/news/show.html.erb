@@ -11,76 +11,6 @@
   <meta property="og:description" content='<%= @news.description.html_safe %>'>
   <meta property="og:type" content="article">
 <% end %>
-<header class="blog-header mt-lg-0 mt-md-3">
-  <div class="row
-   flex-lg-nowrap d-md-flex flex-md-wrap justify-content-lg-between justify-content-md-center align-items-center no-gutters">
-    <div class="col-lg-4 col-12 pt-1  mt-2 mb-4 text-lg-left text-md-center text-center">
-      <a class="navbar-logo ml-lg-5" href="/"><%= image_tag "logo.png" %></a>
-    </div>
-    <div class="ml-auto d-lg-block d-md-none d-none">
-      <form class="form-inline form-search" action="#">
-        <input class="form-control mr-sm-2" type="text" placeholder="Search">
-        <button class="btn btn-success" type="submit">Search</button>
-      </form>
-    </div>
-  </div>
-</header>
-<nav class="navbar my-nav navbar-expand-lg mt-md-5 mt-5 p-lg-0 p-md-2">
-  <div  class=" ml-lg-4 navbar-toggler sticky-top" data-toggle="collapse" data-target="#demo"><span class="fa fa-bars text-white"></span>
-  </div>
-  <div class="ml-auto d-lg-none d-md-block d-block buttons">
-    <div class="mt-2">
-      <% if user_signed_in? %>
-       <%= link_to "Sign-out",destroy_user_session_path, method: :get, class: "demo-icon sign-out-btn font-weight-bold" %>
-      <% else %>
-        <%= link_to "Login / Register",  new_user_session_path , class: "font-weight-bold demo-icon signin-btn" %>
-      <% end %>  
-    </div>  
-  </div> 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent1">
-    <nav class="navbar navbar-inverse wide-menu p-0">
-      <div class="container p-0">
-        <div class="collapse navbar-collapse" id="secundary-nav">
-          <ul class="nav navbar-nav navbar-left">
-            <li class="active dropdown main-menu-active">
-              <a href="/"><i class="fa fa-home"></i> </a>
-            </li>
-            <% @categories.each do |category| %>
-              <li class="dropdown main-menu-active">
-                <%= link_to category_path(category) do %>
-                  <%= category.name %>
-                <% end %> 
-              </li>
-            <% end %>
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <div class="ml-auto d-lg-block d-md-none d-none buttons">
-      <div class="mt-4">
-        <% if user_signed_in? %>
-         <%= link_to "Sign-out",destroy_user_session_path, method: :get, class: "demo-icon sign-out-btn font-weight-bold" %>
-        <% else %>
-          <%= link_to "Login / Register",  new_user_session_path , class: "font-weight-bold mr-5 demo-icon signin-btn" %>
-        <% end %>  
-      </div>  
-    </div> 
-  </div>
-</nav>
-<div id="demo" class="collapse">
-  <ul class="nav navbar-nav">
-    <li class="active dropdown main-menu-active">
-      <a href="/"><i class="fa fa-home"></i> </a>
-    </li>
-    <% @categories.each do |category| %>
-      <li class="dropdown main-menu-active">
-        <%= link_to category_path(category) do %>
-          <%= category.name %>
-        <% end %> 
-      </li>
-    <% end %>
-  </ul>
-</div>
 <main role="main" class="container">
   <div class="row">
     <div class="col-lg-8 col-md-12 blog-main">
@@ -222,7 +152,7 @@
           </div>  
         </div>  
       </div>
-      <div class="card rounded-0 p-0 p-md-3 mt-md-4 mt-4">
+      <div class="card rounded-0 p-0 p-md-3 mt-md-4 mt-4 ml-0">
         <div class="card-body p-md-0 P-0">
           <div class="d-flex justify-content-between">
             <div class="pb-0 pt-0 pt-md-0 pb-md-0 pl-2 pr-2"><p class="font-arial font-weight-bold sm-para">ADVERTISMENT</p></div>
@@ -232,7 +162,7 @@
         </div>  
       </div> 
       <div>
-      <div class="card rounded-0 p-0 p-md-3 mt-md-4 mt-4">
+      <div class="card rounded-0 p-0 p-md-3 mt-md-4 mt-4 ml-0">
         <div class="card-body p-md-0 p-3">
           <div class="d-flex  justify-content-between">
             <div class="pb-0 pt-4 pt-md-0 pb-md-0 pl-2 pr-2"><p class="font-arial font-weight-bold sm-para">RECENT POSTS</p></div>
