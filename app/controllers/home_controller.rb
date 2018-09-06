@@ -3,6 +3,8 @@ class HomeController < ApplicationController
     @news = News.all
     @news_paginate = News.page(params[:page]).per(10)
     @categories = Category.all
+    @user = current_user
+    @videos = Video.all
     @search = News.ransack(params[:q])
     @news = @search.result
     @news_by_month = News.all.map { |news| [Date::MONTHNAMES[news.created_at.month], news.created_at.year].join(' ') }

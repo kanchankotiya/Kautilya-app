@@ -1,0 +1,87 @@
+
+<main role="main" class="container">
+  <div class="row">
+    <div class="col-lg-8 col-md-12 blog-main">
+      <div class="card mt-4">
+        <div class="card-body">
+          <h3 class="post-title">
+            <%= @video.title %>
+          </h3> 
+          <small class="text-muted media-para ">
+            <abbr class="published" itemprop="datePublished" title="2018-08-11T10:46:00+05:30"><i><%= @video.created_at.strftime("%d %b %Y") %></i> 
+          </small>
+          <div class="mt-4 show-video">
+            <% if @video.youtube_url.present? %>
+              <iframe src='https://www.youtube.com/embed/<%= @video.youtube_url %>?rel=0&autoplay=<%= params[:autoplay] || 0 %>' frameborder='0' allowfullscreen></iframe>
+            <% else %>
+              <%= image_tag "dummy.jpg" %>  
+            <% end %>
+          </div>
+          <div class="show-description-text mt-4">
+            <%= @video.description.html_safe%>
+          </div>
+        </div>  
+      </div> 
+    </div><!-- /.blog-main -->
+    <aside class="col-lg-4 col-md-12 blog-sidebar mt-md-4 mt-4">
+      <div>
+        <div class="card rounded-0 p-0 p-md-3 ml-0">
+          <div class="card-body p-md-0 p-3">
+            <div class="d-flex justify-content-between">
+              <div class="pb-0 pt-4 pt-md-0 pb-md-0 pl-2 pr-2"><p class="font-arial font-weight-bold sm-para">MONTHLY CURRENT AFFAIRS</p></div>
+              <div class="pb-0 pt-4 pt-md-0 pb-md-0 pl-2 pr-2"><i class="fa fa-calendar  text-muted"></i></div>
+            </div>
+            <hr class="mt-0 ml-md-0 mr-md-0  ">
+            <ol class="list-unstyled mb-0">
+              <% @news_by_month.each do |m,p| %>
+                <li class="archivedate">
+                  <%= link_to m, news_by_month_path(:month => m)%>
+                  (<%= p  %>)
+                </li>
+              <% end %>
+            </ol>  
+          </div>  
+        </div>  
+      </div>
+      <div class="card rounded-0 p-0 p-md-3 mt-md-4 mt-4 ml-0">
+        <div class="card-body p-md-0 P-0">
+          <div class="d-flex justify-content-between">
+            <div class="pb-0 pt-0 pt-md-0 pb-md-0 pl-2 pr-2"><p class="font-arial font-weight-bold sm-para">ADVERTISMENT</p></div>
+          </div> 
+          <hr class="mt-0 ml-md-0 mr-md-0">
+          <h6>Coming Soon...</h6>
+        </div>  
+      </div> 
+      <div>
+      <div class="card rounded-0 p-0 p-md-3 mt-md-4 mt-4 ml-0">
+        <div class="card-body p-md-0 p-3">
+          <div class="d-flex  justify-content-between">
+            <div class="pb-0 pt-4 pt-md-0 pb-md-0 pl-2 pr-2"><p class="font-arial font-weight-bold sm-para">RECENT POSTS</p></div>
+            <div class="pb-0 pt-4 pt-md-0 pb-md-0 pl-2 pr-2"><i class="fa fa-ellipsis-v  text-muted"></i></div>
+          </div>
+          <hr class="mt-0 ml-md-0 mr-md-0">
+          <% @news_count.order("created_at DESC").first(4).each do |news|%>
+            <a href="#"><%= link_to news_path(news), class: "media-link" do%>
+                <div class="post-media">
+                  <div class="media mt-3">
+                    <% if news.image.present? %>
+                      <%= image_tag news.image, class: "mr-3 post-img" %>
+                    <% else %>
+                      <%= image_tag "dummy.jpg", class: "mr-3 post-img" %>  
+                    <% end %>
+                    <div class="media-body ml-0">
+                      <div class="recent-title"><%= news.title%></div>
+                      <span class="text-muted"><small><%= news.created_at.strftime("%b %d %Y")%></small></span>
+                    </div>
+                  </div>
+                </div>  
+            <% end %>
+          <% end %>  
+        </div>  
+      </div>
+      </div>
+    </aside><!-- /.blog-sidebar -->
+  </div><!-- /.row -->
+</main><!-- /.container -->
+
+

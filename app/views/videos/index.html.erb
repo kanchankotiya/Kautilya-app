@@ -1,0 +1,26 @@
+<div class="container-fluid mt-2">
+  <%= image_tag "courses-banner.jpg", style: "width :100%;"%>
+</div>
+<div class="container">
+  <div class="video-show-card-section">
+    <h4 class="mt-5 video-text">Video Courses</h4>
+    <div class="row ">
+      <% @videos.each do |video|%>
+        <div class="col-md-3 mt-5">
+          <div class="card video-show-cards">
+            <% if video.youtube_url.present? %>
+              <iframe src='https://www.youtube.com/embed/<%= video.youtube_url %>?rel=0&autoplay=<%= params[:autoplay] || 0 %>' frameborder='0' allowfullscreen, class="card-img-top"></iframe>
+            <% else %>
+              <%= image_tag "dummy.jpg" %>  
+            <% end %>
+            <div class="card-body">
+              <h5 class="card-title"><%= video.title.truncate(50) %></h5>
+              <p class="card-text"><%= raw video.description.truncate(50)%></p>
+              <%= link_to "See More...", video_path(video), class: "btn read-more-btn" %>
+            </div>
+          </div>
+        </div>
+      <% end %>  
+    </div> 
+  </div>  
+</div>  

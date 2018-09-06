@@ -22,7 +22,7 @@ body{
 .navbar-inverse .navbar-nav>li {
   border-left: 1px solid rgba(255, 255, 255, 0.2);
   border-right: 1px solid rgba(0, 0, 0, 0.08);
-  padding: 11px;
+  padding: 9px;
 }
 .main-menu-active:hover{
   background-color: #008aca;
@@ -48,11 +48,14 @@ body{
   background-repeat: no-repeat !important;
   background-color: #0b82b7;
 }
+.video-icon{
+  width: 44%;
+}
 .navbar-nav .active a{
   background-image: url(up_arrow.png) !important;
   background-position: center bottom !important;
   background-repeat: no-repeat !important;
-  padding: 15px;
+  padding: 13px;
 }
 .navbar-inverse .navbar-nav>li>a {
   font-size: 13px;
@@ -572,9 +575,11 @@ pagination css*/
 {
   background: #ff6d00;
   text-align: center;
-  padding: 9px 21px 10px 35px;
+  padding: 5px 14px 6px 16px;
   border-radius: 5px;
   color: #fff;
+  font-size: 13px;
+  border-radius: 0px;
 }
 
 
@@ -588,6 +593,23 @@ pagination css*/
 .search_collapse{margin-top: -2%;margin-left: 72%;}
 .buttons{margin-top: -2%;}
 .card-link-text a{color: #000;}
+
+/*
+videos page css*/
+.show-video iframe{
+  width: 100%;
+  height: 400px;
+}
+.read-more-btn a{
+  color: #ffffff;
+}
+.video-text{
+  border-bottom: 3px solid #09a3e7;
+  width: 23%;
+}
+.video-show-cards{
+  min-height: 400px;
+}
 @media screen and (min-width: 320px) and (max-width: 575px){
   .main-container{
     max-width:353px;

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :videos, only:[:show, :index] 
+
   devise_for :users,  controllers: {
     registrations: 'users/registrations',
     sessions: 'users/sessions',
