@@ -6,7 +6,7 @@
     <h4 class="mt-5 video-text">Video Courses</h4>
     <div class="row ">
       <% @videos.each do |video|%>
-        <div class="col-md-3 mt-5">
+        <div class="col-lg-3 col-md-6 mt-5">
           <div class="card video-show-cards">
             <% if video.youtube_url.present? %>
               <iframe src='https://www.youtube.com/embed/<%= video.youtube_url %>?rel=0&autoplay=<%= params[:autoplay] || 0 %>' frameborder='0' allowfullscreen, class="card-img-top"></iframe>
