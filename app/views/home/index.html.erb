@@ -1,3 +1,4 @@
+<!-- <div class='pm-button'><a href='https://www.payumoney.com/sandbox/paybypayumoney/#/4C6D04C493BC279EDF27BEF06B7AC320'><img src='https://www.payumoney.com/media/images/payby_payumoney/new_buttons/21.png' /></a></div>    -->           
 <header class="blog-header mt-lg-0 mt-md-3">
   <div class="row
    flex-lg-nowrap d-md-flex flex-md-wrap justify-content-lg-between justify-content-md-center align-items-center no-gutters">
@@ -34,6 +35,7 @@
             <% @categories.each do |category| %>
               <%= nav_link "#{category.name}", category_path(category) %>
             <% end %>
+            <%= nav_link "E-Book",e_books_path %>
           </ul>
         </div>
       </div>
@@ -61,6 +63,7 @@
         <% end %> 
       </li>
     <% end %>
+    <%= nav_link "E-Book",e_books_path %>
   </ul>
 </div>
 
@@ -416,3 +419,4 @@
   //   });
   // }
 </script> 
+ 

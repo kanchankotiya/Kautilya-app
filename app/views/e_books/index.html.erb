@@ -67,30 +67,35 @@
 </div>
 
 <div class="container-fluid mt-2">
-  <%= image_tag "courses-banner.jpg", style: "width :100%;"%>
+  <%= image_tag "category-banner-ebooks.jpg", style: "width :100%;"%>
 </div>
+
+
 <div class="container">
-  <div class="video-show-card-section">
-    <h4 class="mt-5 video-text">Video Courses</h4>
-    <div class="row ">
-      <%# if current_user.present?%>
-        <% @videos.each do |video|%>
-          <div class="col-lg-3 col-md-6 mt-5">
-            <div class="card video-show-cards">
-              <% if video.youtube_url.present? %>
-                <iframe src='https://www.youtube.com/embed/<%= video.youtube_url %>?rel=0&autoplay=<%= params[:autoplay] || 0 %>' frameborder='0' allowfullscreen, class="card-img-top"></iframe>
-              <% else %>
-                <%= image_tag "dummy.jpg" %>  
-              <% end %>
-              <div class="card-body">
-                <h5 class="card-title"><%= video.title.truncate(50) %></h5>
-                <p class="card-text"><%= raw video.description.truncate(50)%></p>
-                <%= link_to "See More...", video_path(video), class: "btn read-more-btn" %>
-              </div>
+  <div class="">
+    <h4 class="mt-5 video-text">E-Book</h4>
+    <div class="row mt-4">
+      <% @e_books.each do |e_book|%>
+        <div class="col-md-4 col-xl-3">
+          <div class="card p-3 mr-sm-0 mr-xl-5 mr-md-5 shadow mt-md-3 mt-sm-3 mt-xl-0 mt-3">
+            <% if e_book.cover_image.present? %>
+              <%= image_tag e_book.cover_image, class: "card-img-top test-img" %>
+            <% else %>
+              <%= image_tag "dummy.jpg" %>  
+            <% end %>
+            <div class="card-body pl-0 pb-0">
+              <p class="card-title"><%= e_book.title.truncate(17) %></p>
+            </div>
+            <div class="card-footer shadow bg-white p-0  text-center border">
+              <small>
+                <%# if @user.present? %>
+                  <%= link_to "View Details", e_book_path(e_book),  class: "text-danger text-uppercase"%>
+                <%# end %>  
+              </small>  
             </div>
           </div>
-        <% end %>  
-      <%# end %>  
-    </div> 
+        </div>  
+      <% end %>  
+    </div>
   </div>  
 </div>  

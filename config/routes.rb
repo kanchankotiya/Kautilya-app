@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  resources :videos, only:[:show, :index] 
+  resources :payments
+ 
 
   devise_for :users,  controllers: {
     registrations: 'users/registrations',
@@ -13,9 +14,8 @@ Rails.application.routes.draw do
   get '/news_by_month' => "home#news_by_month"
 
   resources :news, only: [:show, :index]
-  # resources :news do
-  #   collection { post :search, to: 'news#index' }
-  # end
+  resources :videos, only:[:show, :index] 
+  resources :e_books, only:[:show, :index] 
   resources :categories, only: [:show]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

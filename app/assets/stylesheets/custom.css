@@ -610,6 +610,13 @@ videos page css*/
 .video-show-cards{
   min-height: 400px;
 }
+.test-img{
+  width: 100%;
+  height: 180px;
+}
+.media .test-img-show{
+  width: 200px;
+}
 @media screen and (min-width: 320px) and (max-width: 575px){
   .main-container{
     max-width:353px;
@@ -618,10 +625,16 @@ videos page css*/
   .owl-next{
     position: unset;
   } 
+  .share-post{
+    margin-top: -7%;
+  }
   .my-nav{
-    width: 355px;
+    width: 339px;
     padding: 6px;
     margin-left: 1%;
+  }
+  .home-link{
+    width: 20%;
   }
   .signin-btn{
     padding: 7px 7px 7px 10px;
@@ -842,6 +855,10 @@ videos page css*/
     .video-text{
       width: 50%;
     }
+    .test-img{
+      height: 300px;
+    }
+
   }
 @media screen and (min-width: 768px) and (max-width: 991px)
   {
@@ -929,7 +946,6 @@ videos page css*/
     .navbar-logo h1{
       font-size: 34px!important;
     }
-
     .slider-img img, .gallery-section .card-img-overlay{ 
       width: 229px;
     }
