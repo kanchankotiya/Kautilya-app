@@ -75,7 +75,7 @@
     <div class="col-lg-8 col-md-12 blog-main pl-lg-0">
       <% @category.news.order("created_at DESC").each do |news|%>   
         <div class="media">
-           <% if news.image.present? %>
+          <% if news.image.present? %>
             <%= image_tag news.image %>
           <% else %>
             <%= image_tag "dummy.jpg" %>  
@@ -93,7 +93,7 @@
             <h2 class="post-title">
               <%= link_to news_path(news)  do %>
                 <%= news.title %>
-               <% end %>
+              <% end %>
             </h2>
             <small class="text-muted media-body-para">
               <%= link_to news_path(news)  do %>
@@ -154,7 +154,7 @@
             </div>
             <hr class="mt-0 ml-md-0 mr-md-0">
             <% @category.news.order("created_at DESC").first(4).each do |news|%>  
-              <a href="#"><%= link_to news_path(news), class: "media-link" do%>
+              <%= link_to news_path(news), class: "media-link" do%>
                 <div class="post-media">
                   <div class="media mt-3">
                     <% if news.image.present? %>
@@ -167,7 +167,7 @@
                       <span class="text-muted"><small><%= news.created_at.strftime("%b %d %Y")%></small></span>
                     </div>
                   </div>
-              </div>
+                </div>
               <% end %>
             <% end %>  
           </div>  
